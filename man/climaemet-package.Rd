@@ -8,14 +8,28 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Tools to download the climatic data of the Spanish Meteorological Agency (AEMET) directly from R using their API <https://opendata.aemet.es/> and create scientific graphs (climate charts, trend analysis of climate time series, temperature and precipitation anomalies maps, warming stripes graphics, climatograms, etc.).
+Tools to download the climatic data of the Spanish
+    Meteorological Agency (AEMET) directly from R using their API and
+    create scientific graphs (climate charts, trend analysis of climate
+    time series, temperature and precipitation anomalies maps, warming
+    stripes graphics, climatograms, etc.).
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://mpizarrotig.github.io/climaemet}
-  \item \url{https://github.com/mpizarrotig/climaemet}
-  \item Report bugs at \url{https://github.com/mpizarrotig/climaemet/issues}
+  \item \url{https://ropenspain.github.io/climaemet/}
+  \item \url{https://github.com/rOpenSpain/climaemet}
+  \item Report bugs at \url{https://github.com/rOpenSpain/climaemet/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Diego Hernangómez \email{diego.hernangomezherrero@gmail.com} (\href{https://orcid.org/0000-0001-8457-4658}{ORCID}) (rOpenSpain)
+
+Authors:
+\itemize{
+  \item Manuel Pizarro (\href{https://orcid.org/0000-0002-6981-0154}{ORCID}) [copyright holder]
+  \item Gema Fernández-Avilés (\href{https://orcid.org/0000-0001-5934-1916}{ORCID})
 }
 
 }
