@@ -3,6 +3,7 @@
 #' Plot climate stripes graph for a station
 #'
 #' @family aemet_plots
+#' @family stripes
 #'
 #'
 #' @inheritSection aemet_daily_clim API Key
@@ -18,18 +19,15 @@
 #'
 #' @seealso [ggstripes()]
 #'
-#' @examples
-#'
-#' # Run this example only if AEMET_API_KEY is set
-#'
-#' if (aemet_detect_api_key()) {
-#'   climatestripes_station(
-#'     "9434",
-#'     start = 2010,
-#'     end = 2020,
-#'     with_labels = "yes",
-#'     col_pal = "Inferno"
-#'   )
+#' @examplesIf aemet_detect_api_key()
+#' \donttest{
+#' climatestripes_station(
+#'   "9434",
+#'   start = 2010,
+#'   end = 2020,
+#'   with_labels = "yes",
+#'   col_pal = "Inferno"
+#' )
 #' }
 #' @export
 climatestripes_station <-
@@ -95,6 +93,7 @@ climatestripes_station <-
 #' Warming stripes graph
 #'
 #' @family aemet_plots
+#' @family stripes
 #'
 #' @description
 #' Plot different "climate stripes" or "warming stripes" using **ggplot2**.
@@ -130,8 +129,17 @@ climatestripes_station <-
 #'
 #' @return A `ggplot2` object.
 #'
-#' @example inst/examples/ggstripes.R
+#' @examples
 #'
+#' library(ggplot2)
+#'
+#' data <- climaemet::climaemet_9434_temp
+#'
+#' ggstripes(data, plot_title = "Zaragoza Airport") +
+#'   labs(subtitle = "(1950-2020)")
+#'
+#' ggstripes(data, plot_title = "Zaragoza Airport", plot_type = "trend") +
+#'   labs(subtitle = "(1950-2020)")
 #' @export
 
 ggstripes <-

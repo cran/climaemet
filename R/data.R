@@ -6,6 +6,7 @@
 #' (2000-2020). This is an example dataset.
 #'
 #' @family dataset
+#' @family wind
 #'
 #' @name climaemet_9434_wind
 #'
@@ -31,6 +32,7 @@ NULL
 #' @examples
 #' data(climaemet_9434_temp)
 #' @family dataset
+#' @family stripes
 #'
 #' @name climaemet_9434_temp
 #'
@@ -52,6 +54,7 @@ NULL
 #' used to plot climatograms.
 #'
 #' @family dataset
+#' @family climatogram
 #'
 #' @name climaemet_9434_climatogram
 #' @examples

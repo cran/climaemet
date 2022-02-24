@@ -57,15 +57,14 @@ You need to set your API Key globally using \code{\link[=aemet_api_key]{aemet_ap
 }
 
 \examples{
-
-# Run this example only if AEMET_API_KEY is set
-
-if (aemet_detect_api_key()) {
-  windrose_period("9434",
-    start = 2000, end = 2010,
-    speed_cuts = 4
-  )
+\dontshow{if (aemet_detect_api_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
+windrose_period("9434",
+  start = 2000, end = 2010,
+  speed_cuts = 4
+)
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=aemet_daily_period]{aemet_daily_period()}}
@@ -78,5 +77,11 @@ Other aemet_plots:
 \code{\link{ggstripes}()},
 \code{\link{ggwindrose}()},
 \code{\link{windrose_days}()}
+
+Other wind: 
+\code{\link{climaemet_9434_wind}},
+\code{\link{ggwindrose}()},
+\code{\link{windrose_days}()}
 }
 \concept{aemet_plots}
+\concept{wind}

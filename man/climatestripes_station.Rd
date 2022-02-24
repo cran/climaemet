@@ -47,18 +47,17 @@ You need to set your API Key globally using \code{\link[=aemet_api_key]{aemet_ap
 }
 
 \examples{
-
-# Run this example only if AEMET_API_KEY is set
-
-if (aemet_detect_api_key()) {
-  climatestripes_station(
-    "9434",
-    start = 2010,
-    end = 2020,
-    with_labels = "yes",
-    col_pal = "Inferno"
-  )
+\dontshow{if (aemet_detect_api_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
+climatestripes_station(
+  "9434",
+  start = 2010,
+  end = 2020,
+  with_labels = "yes",
+  col_pal = "Inferno"
+)
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=ggstripes]{ggstripes()}}
@@ -71,5 +70,10 @@ Other aemet_plots:
 \code{\link{ggwindrose}()},
 \code{\link{windrose_days}()},
 \code{\link{windrose_period}()}
+
+Other stripes: 
+\code{\link{climaemet_9434_temp}},
+\code{\link{ggstripes}()}
 }
 \concept{aemet_plots}
+\concept{stripes}

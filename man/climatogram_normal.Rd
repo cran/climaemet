@@ -46,12 +46,9 @@ You need to set your API Key globally using \code{\link[=aemet_api_key]{aemet_ap
 }
 
 \examples{
-
-# Run this example only if AEMET_API_KEY is set
-
-if (aemet_detect_api_key()) {
-  climatogram_normal("9434")
-}
+\dontshow{if (aemet_detect_api_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+climatogram_normal("9434")
+\dontshow{\}) # examplesIf}
 }
 \references{
 Walter, H. & Lieth, H (1960): Klimadiagramm Weltatlas. G. Fischer, Jena.
@@ -65,5 +62,11 @@ Other aemet_plots:
 \code{\link{ggwindrose}()},
 \code{\link{windrose_days}()},
 \code{\link{windrose_period}()}
+
+Other climatogram: 
+\code{\link{climaemet_9434_climatogram}},
+\code{\link{climatogram_period}()},
+\code{\link{ggclimat_walter_lieth}()}
 }
 \concept{aemet_plots}
+\concept{climatogram}

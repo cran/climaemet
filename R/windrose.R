@@ -5,6 +5,7 @@
 #' days period.
 #'
 #' @family aemet_plots
+#' @family wind
 #'
 #' @param start Character string as start date (format: YYYY-MM-DD).
 #' @param end Character string as end date (format: YYYY-MM-DD).
@@ -20,17 +21,12 @@
 #' @return A `ggplot2` object
 #'
 #'
-#' @examples
-#'
-#' # Run this example only if AEMET_API_KEY is set
-#'
-#' if (aemet_detect_api_key()) {
-#'   windrose_days("9434",
-#'     start = "2000-12-01",
-#'     end = "2000-12-31",
-#'     speed_cuts = 4
-#'   )
-#' }
+#' @examplesIf aemet_detect_api_key()
+#' windrose_days("9434",
+#'   start = "2000-12-01",
+#'   end = "2000-12-31",
+#'   speed_cuts = 4
+#' )
 #' @export
 
 windrose_days <-
@@ -101,6 +97,7 @@ windrose_days <-
 #' time period.
 #'
 #' @family aemet_plots
+#' @family wind
 #'
 #' @param start Numeric value as start year (format: YYYY).
 #' @param end Numeric value as end year (format: YYYY).
@@ -113,15 +110,12 @@ windrose_days <-
 #'
 #' @inheritSection aemet_daily_clim API Key
 #'
-#' @examples
-#'
-#' # Run this example only if AEMET_API_KEY is set
-#'
-#' if (aemet_detect_api_key()) {
-#'   windrose_period("9434",
-#'     start = 2000, end = 2010,
-#'     speed_cuts = 4
-#'   )
+#' @examplesIf aemet_detect_api_key()
+#' \donttest{
+#' windrose_period("9434",
+#'   start = 2000, end = 2010,
+#'   speed_cuts = 4
+#' )
 #' }
 #' @export
 
@@ -190,6 +184,7 @@ windrose_period <-
 #' Plot a windrose showing the wind speed and direction using **ggplot2**.
 #'
 #' @family aemet_plots
+#' @family wind
 #'
 #' @inheritSection aemet_daily_clim API Key
 #'
@@ -218,8 +213,27 @@ windrose_period <-
 #' @return A `ggplot` object.
 #'
 #'
-#' @example inst/examples/ggwindrose.R
+#' @examples
 #'
+#'
+#' library(ggplot2)
+#'
+#' speed <- climaemet::climaemet_9434_wind$velmedia
+#' direction <- climaemet::climaemet_9434_wind$dir
+#'
+#' rose <- ggwindrose(
+#'   speed = speed,
+#'   direction = direction,
+#'   speed_cuts = seq(0, 16, 4),
+#'   legend_title = "Wind speed (m/s)",
+#'   calm_wind = 0,
+#'   n_col = 1,
+#'   plot_title = "Zaragoza Airport"
+#' )
+#' rose + labs(
+#'   subtitle = "2000-2020",
+#'   caption = "Source: AEMET"
+#' )
 #' @export
 
 ggwindrose <- function(speed,

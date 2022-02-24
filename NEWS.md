@@ -1,11 +1,17 @@
+# climaemet 1.0.1
+
+-   Add new citation.
+-   Adapt some examples.
+-   Remove `lubridate` dependency.
+-   No more messages when loading the library.
+
 # climaemet 1.0.0
 
 -   package added to rOpenSpain project: repo transferred to <https://github.com/rOpenSpain/climaemet>
 
 ## Breaking changes:
 
--   `apikey` parameter has been deprecated on all the functions. Now the API 
-Key is globally managed via an environment variable: see `aemet_api_key()`.
+-   `apikey` parameter has been deprecated on all the functions. Now the API Key is globally managed via an environment variable: see `aemet_api_key()`.
 
 ## Major changes
 
