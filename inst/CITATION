@@ -1,6 +1,11 @@
+year <- format(Sys.time(), "%Y")
+abs <- trimws(gsub("\\s+", " ", meta$Description))
+abs <- gsub("'", "", abs)
+doi <- "10.5281/zenodo.5205573"
+
 bibentry(
   "Manual",
-  title = "climaemet: Climate AEMET Tools",
+  title = "{climaemet}: Climate {AEMET} Tools",
   author   = c(
     person("Manuel", "Pizarro"),
     person("Diego", "Hernangómez"),
@@ -11,5 +16,12 @@ bibentry(
   month = 8,
   url = "https://hdl.handle.net/10261/250390",
   doi      = "10.5281/zenodo.5205573",
-  keywords = "Climate, Rcran,  Tools, Graphics, Interpolation, Maps"
+  keywords = "Climate, Rcran,  Tools, Graphics, Interpolation, Maps",
+  key = "R-climaemet",
+  textVersion = paste0(
+   "Pizarro M, Hernangómez D, Fernández-Avilés G (", year, "). climaemet: Climate
+AEMET Tools.
+<https://doi.org/10.5281/zenodo.5205573>,
+<https://hdl.handle.net/10261/250390>"
+  )
 )
