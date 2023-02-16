@@ -72,3 +72,41 @@ NULL
 #'
 #' @source AEMET.
 NULL
+
+#' Data set with all the municipalities of Spain
+#'
+#' @name aemet_munic
+#'
+#' @docType data
+#' @family dataset
+#' @family forecast
+#'
+#' @description
+#' A `tibble` with all the municipalities of  Spain as defined by
+#' the INE (Instituto Nacional de Estadistica) as of
+#' January 2020.
+#'
+#' @source
+#' INE, [Municipality codes by province](https://www.ine.es/en/daco/daco42/codmun/codmunmapa_en.htm)
+#'
+#' @encoding UTF-8
+#'
+#' @seealso [aemet_forecast_daily()],
+#' [aemet_forecast_hourly()]
+#' @format
+#' A `tibble` with
+#' `r prettyNum(nrow(climaemet::aemet_munic), big.mark=",")` rows and fields:
+#' \describe{
+#'   \item{municipio}{INE code of the municipality.}
+#'   \item{municipio_nombre}{INE name of the municipality.}
+#'   \item{cpro}{INE code of the province.}
+#'   \item{cpro_nombre}{INE name of the province.}
+#'   \item{codauto}{INE code of the autonomous community.}
+#'   \item{codauto_nombre}{INE code of the autonomous community.}
+#' }
+#' @examples
+#'
+#' data(aemet_munic)
+#'
+#' aemet_munic
+NULL

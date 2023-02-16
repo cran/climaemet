@@ -1,0 +1,147 @@
+---
+title: "Extending climaemet"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Extending climaemet}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+resource_files:
+   - vignettes/example-gif.gif
+---
+
+
+
+**climaemet** provides several functions for accessing a selection of endpoints of the [AEMET API tool](https://opendata.aemet.es/dist/index.html?). However, this package does not cover in full all the capabilities of the API.
+
+For that reason, we provide the `get_data_aemet()` function, that allows to access any API endpoint freely. The drawback is that the user would need to handle the results by him/herself.
+
+
+```r
+library(climaemet)
+```
+
+## Example: Normalized text
+
+Some API endpoints, as **predicciones-normalizadas-texto**, provides the results as plain text on natural language. These results are not parsed by **climaemet**, but can be retrieved as this:
+
+
+```r
+# endpoint, today forecast
+
+today <- "/api/prediccion/nacional/hoy"
+
+# Metadata
+knitr::kable(get_metadata_aemet(today))
+```
+
+
+
+|unidad_generadora                           |descripcion                                                                                                                              |periodicidad                                                                                                                                                                                                               |formato   |copyright                                                                                               |notaLegal                          |
+|:-------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|:-------------------------------------------------------------------------------------------------------|:----------------------------------|
+|Grupo Funcional de Predicción de Referencia |Predicción general nacional para hoy / mañana / pasado mañana / medio plazo (tercer y cuarto día) / tendencia (del quinto al noveno día) |Disponibilidad. Para hoy, solo se confecciona si hay cambios significativos. Para mañana y pasado mañana diaria a las 15:00 h.o.p.. Para el medio plazo diaria a las 16:00 h.o.p.. La tendencia, diaria a las 18:30 h.o.p. |ascii/txt |© AEMET. Autorizado el uso de la información y su reproducción citando a AEMET como autora de la misma. |https://www.aemet.es/es/nota_legal |
+
+```r
+
+# Data
+pred_today <- get_data_aemet(today)
+#> 
+#> Returning raw results. MIME type: text/plain
+```
+
+
+```r
+# Produce a result
+
+clean <- gsub("\r", "\n", pred_today, fixed = TRUE)
+clean <- gsub("\n\n\n", "\n", clean, fixed = TRUE)
+
+cat(paste("---\n\n", clean, "\n---"))
+```
+
+---
+
+ AGENCIA ESTATAL DE METEOROLOGÍA
+PREDICCIÓN GENERAL PARA ESPAÑA 
+DÍA 14 DE FEBRERO DE 2023 A LAS 08:20 HORA OFICIAL
+PREDICCIÓN VÁLIDA PARA EL MARTES 14
+
+A.- FENÓMENOS SIGNIFICATIVOS
+Viento fuerte o con intervalos de fuerte en el Estrecho y el
+litoral mediterráneo andaluz. Heladas débiles o moderadas en los
+sistemas montañosos del norte y centro peninsulares. Calima en el
+entorno de Alborán.
+
+B.- PREDICCIÓN
+Se esperan cielos nubosos en el área del Estrecho con lluvia
+débil. Intervalos nubosos en Baleares, la fachada oriental
+peninsular y el interior del sureste, sin descartar alguna
+precipitación débil en esta última zona. Poco nuboso en el
+resto de la mitad oriental peninsular. Nubosidad en aumento en el
+resto de la Península, sin descartar alguna precipitación débil
+al final en el oeste de Andalucía. En Canarias habrá intervalos
+nubosos, con baja probabilidad de precipitaciones débiles al
+principio en las islas orientales y al final en el norte de las de
+mayor relieve.
+
+Cotas de nieve: en el interior del sureste peninsular, 1600/1800
+m.
+
+No se descartan nieblas matinales en el interior del sureste
+peninsular, el valle del Ebro, el norte de Baleares y el norte del
+litoral mediterráneo peninsular. Podría haber calima en el este
+de Canarias y en el entorno de Alborán, más intensa en Melilla.
+
+Las temperaturas máximas, con pequeños cambios, subirán en el
+sureste y en el noreste peninsulares, así como en el
+archipiélago balear, y tenderán a descender en el resto. Las
+mínimas subirán en casi toda la Península. Se producirán
+heladas débiles en zonas dispersas de la meseta Norte, y en los
+sistemas montañosos del centro y norte peninsulares y podrán ser
+moderadas en Pirineos. Puntualmentes se extenderán a zonas de
+montaña del sureste peninsular.
+
+Predominio de viento del este y sureste en la Península y
+Baleares, fuerte o con intervalos de fuerte en el Estrecho y
+Alborán. En Canarias, viento del norte arreciando en las islas
+occidentales y Gran Canaria, con intervalos de intensidad fuerte
+en los canales entre islas. En las islas más orientales rolará
+de sur a norte.
+
+ 
+---
+
+## Example: Maps
+
+AEMET also provides map data, usually on `image/gif` format. One way to get this kind of data is as follows:
+
+
+```r
+# Endpoint of a map
+a_map <- "/api/mapasygraficos/analisis"
+
+# Metadata
+knitr::kable(get_metadata_aemet(a_map))
+```
+
+
+
+|unidad_generadora                 |descripción                                |periodicidad                                                                              |formato   |copyright                                                                                               |notaLegal                          |
+|:---------------------------------|:------------------------------------------|:-----------------------------------------------------------------------------------------|:---------|:-------------------------------------------------------------------------------------------------------|:----------------------------------|
+|Grupo Funcional de Jefes de Turno |Mapas de análisis de frentes en superficie |Dos veces al día, a las 02:00 y 14:00 h.o.p. en invierno y a las 03:00 y 15:00 en verano. |image/gif |© AEMET. Autorizado el uso de la información y su reproducción citando a AEMET como autora de la misma. |https://www.aemet.es/es/nota_legal |
+
+```r
+
+the_map <- get_data_aemet(a_map)
+#> 
+#> Returning raw results. MIME type: image/gif
+
+
+# Write as gif and include it
+giffile <- "example-gif.gif"
+writeBin(the_map, giffile)
+
+# Display on the vignette
+knitr::include_graphics(giffile)
+```
+
+<img src="example-gif.gif" alt="plot of chunk maps" width="100%" />

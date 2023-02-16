@@ -7,11 +7,11 @@
 
 [![rOS-badge](https://ropenspain.github.io/rostemplate/reference/figures/ropenspain-badge.svg)](https://ropenspain.es/)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/climaemet?)](https://CRAN.R-project.org/package=climaemet)
+status](https://www.r-pkg.org/badges/version/climaemet)](https://CRAN.R-project.org/package=climaemet)
 [![CRAN_time_from_release](https://www.r-pkg.org/badges/ago/climaemet)](https://cran.r-project.org/package=climaemet)
 [![CRAN_latest_release_date](https://www.r-pkg.org/badges/last-release/climaemet)](https://cran.r-project.org/package=climaemet)
 [![CRAN
-results](https://cranchecks.info/badges/worst/climaemet)](https://cran.r-project.org/web/checks/check_results_climaemet.html)
+results](https://badges.cranchecks.info/worst/climaemet.svg)](https://cran.r-project.org/web/checks/check_results_climaemet.html)
 [![r-universe](https://ropenspain.r-universe.dev/badges/climaemet)](https://ropenspain.r-universe.dev/)
 [![R-CMD-check](https://github.com/rOpenSpain/climaemet/actions/workflows/roscron-check-full.yaml/badge.svg)](https://github.com/rOpenSpain/climaemet/actions/workflows/roscron-check-full.yaml)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5205573-blue)](https://doi.org/10.5281/zenodo.5205573)
@@ -44,7 +44,7 @@ climatological information. To see more details visit:
 ## License for the original data
 
 Information prepared by the Spanish Meteorological Agency (© AEMET). You
-can read about it [here](http://www.aemet.es/en/nota_legal).
+can read about it [here](https://www.aemet.es/en/nota_legal).
 
 A summary for the usage of the data could be interpreted as:
 
@@ -65,7 +65,7 @@ install.packages("climaemet")
 ```
 
 You can install the developing version of **climaemet** using the
-[r-universe](https://ropenspain.r-universe.dev/ui#builds):
+[r-universe](https://ropenspain.r-universe.dev/climaemet):
 
 ``` r
 # Enable this universe
@@ -123,21 +123,20 @@ aemet_last_obs("9434")
 #> # A tibble: 24 × 25
 #>    idema   lon fint                 prec   alt  vmax    vv    dv   lat  dmax
 #>    <chr> <dbl> <dttm>              <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1 9434  -1.00 2022-08-12 15:00:00     0   249   5.7   2.7    79  41.7   100
-#>  2 9434  -1.00 2022-08-12 16:00:00     0   249   5.7   3.2   118  41.7    53
-#>  3 9434  -1.00 2022-08-12 17:00:00     0   249   6.4   3.6   111  41.7   120
-#>  4 9434  -1.00 2022-08-12 18:00:00     0   249   5.9   3      94  41.7   105
-#>  5 9434  -1.00 2022-08-12 19:00:00     0   249   6.9   4.2   139  41.7   150
-#>  6 9434  -1.00 2022-08-12 20:00:00     0   249   5.7   2.8   195  41.7   153
-#>  7 9434  -1.00 2022-08-12 21:00:00     0   249   5.2   2.1   165  41.7   115
-#>  8 9434  -1.00 2022-08-12 22:00:00     0   249   5.2   2.3   206  41.7   235
-#>  9 9434  -1.00 2022-08-12 23:00:00     0   249   4.9   2     296  41.7   128
-#> 10 9434  -1.00 2022-08-13 00:00:00     0   249   5.2   2.4   305  41.7   270
+#>  1 9434  -1.00 2023-02-15 21:00:00     0   249   4.6   1.2   208  41.7   248
+#>  2 9434  -1.00 2023-02-15 22:00:00     0   249   1.5   1.1   303  41.7   315
+#>  3 9434  -1.00 2023-02-15 23:00:00     0   249   1.3   0.9   155  41.7   285
+#>  4 9434  -1.00 2023-02-16 00:00:00     0   249   1.1   0.7   302  41.7   308
+#>  5 9434  -1.00 2023-02-16 01:00:00     0   249   0.9   0.4   223  41.7   200
+#>  6 9434  -1.00 2023-02-16 02:00:00     0   249   1.5   1      89  41.7   118
+#>  7 9434  -1.00 2023-02-16 03:00:00     0   249   1.4   0.8   196  41.7   100
+#>  8 9434  -1.00 2023-02-16 04:00:00     0   249   2.1   0.8   228  41.7   360
+#>  9 9434  -1.00 2023-02-16 05:00:00     0   249   1.2   0.5    92  41.7    93
+#> 10 9434  -1.00 2023-02-16 06:00:00     0   249   1.1   0.2   346  41.7   123
 #> # … with 14 more rows, and 15 more variables: ubi <chr>, pres <dbl>, hr <dbl>,
 #> #   stdvv <dbl>, ts <dbl>, pres_nmar <dbl>, tamin <dbl>, ta <dbl>, tamax <dbl>,
 #> #   tpr <dbl>, stddv <dbl>, inso <dbl>, tss5cm <dbl>, pacutp <dbl>,
 #> #   tss20cm <dbl>
-#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ### Examples
@@ -162,6 +161,7 @@ knitr::kable(head(stations))
 | 0229I      | 08192    | SABADELL AEROPUERTO  | BARCELONA |     146 | 2.103056 | 41.52361 |
 
 ``` r
+
 station <- "9434" # Zaragoza Aeropuerto
 
 ## Get last observation values for a station
@@ -170,16 +170,17 @@ data_observation <- aemet_last_obs(station)
 knitr::kable(head(data_observation))
 ```
 
-| idema |       lon | fint                | prec | alt | vmax |  vv |  dv |      lat | dmax | ubi                 |  pres |  hr | stdvv |   ts | pres_nmar | tamin |   ta | tamax |  tpr | stddv | inso | tss5cm | pacutp | tss20cm |
-|:------|----------:|:--------------------|-----:|----:|-----:|----:|----:|---------:|-----:|:--------------------|------:|----:|------:|-----:|----------:|------:|-----:|------:|-----:|------:|-----:|-------:|-------:|--------:|
-| 9434  | -1.004167 | 2022-08-12 15:00:00 |    0 | 249 |  5.7 | 2.7 |  79 | 41.66056 |  100 | ZARAGOZA AEROPUERTO | 980.6 |  14 |   0.9 | 45.4 |    1007.6 |  40.5 | 41.5 |  41.5 |  8.7 |    21 |   60 |   44.7 |      0 |    35.8 |
-| 9434  | -1.004167 | 2022-08-12 16:00:00 |    0 | 249 |  5.7 | 3.2 | 118 | 41.66056 |   53 | ZARAGOZA AEROPUERTO | 979.9 |  17 |   1.1 | 45.1 |    1006.9 |  41.3 | 41.3 |  41.8 | 11.3 |    18 |   60 |   44.9 |      0 |    36.3 |
-| 9434  | -1.004167 | 2022-08-12 17:00:00 |    0 | 249 |  6.4 | 3.6 | 111 | 41.66056 |  120 | ZARAGOZA AEROPUERTO | 979.5 |  18 |   0.6 | 42.3 |    1006.6 |  40.1 | 40.1 |  41.3 | 11.2 |    10 |   60 |   44.4 |      0 |    36.8 |
-| 9434  | -1.004167 | 2022-08-12 18:00:00 |    0 | 249 |  5.9 | 3.0 |  94 | 41.66056 |  105 | ZARAGOZA AEROPUERTO | 979.7 |  22 |   0.6 | 39.6 |    1006.9 |  38.6 | 38.6 |  40.1 | 13.1 |    13 |   60 |   43.3 |      0 |    37.3 |
-| 9434  | -1.004167 | 2022-08-12 19:00:00 |    0 | 249 |  6.9 | 4.2 | 139 | 41.66056 |  150 | ZARAGOZA AEROPUERTO | 979.8 |  19 |   0.8 | 37.5 |    1007.1 |  37.2 | 37.8 |  38.6 | 10.2 |    11 |   10 |   41.9 |      0 |    37.6 |
-| 9434  | -1.004167 | 2022-08-12 20:00:00 |    0 | 249 |  5.7 | 2.8 | 195 | 41.66056 |  153 | ZARAGOZA AEROPUERTO | 980.3 |  19 |   0.8 | 35.9 |    1007.7 |  36.9 | 37.0 |  37.8 |  9.6 |    28 |    0 |   40.5 |      0 |    37.8 |
+| idema |       lon | fint                | prec | alt | vmax |  vv |  dv |      lat | dmax | ubi                 |   pres |  hr | stdvv |  ts | pres_nmar | tamin |  ta | tamax | tpr | stddv | inso | tss5cm | pacutp | tss20cm |
+|:------|----------:|:--------------------|-----:|----:|-----:|----:|----:|---------:|-----:|:--------------------|-------:|----:|------:|----:|----------:|------:|----:|------:|----:|------:|-----:|-------:|-------:|--------:|
+| 9434  | -1.004167 | 2023-02-15 21:00:00 |    0 | 249 |  4.6 | 1.2 | 208 | 41.66056 |  248 | ZARAGOZA AEROPUERTO |  999.1 |  70 |   1.1 | 5.8 |    1030.2 |   6.3 | 6.4 |   7.4 | 1.3 |    47 |    0 |    8.1 |      0 |     8.8 |
+| 9434  | -1.004167 | 2023-02-15 22:00:00 |    0 | 249 |  1.5 | 1.1 | 303 | 41.66056 |  315 | ZARAGOZA AEROPUERTO |  999.8 |  71 |   0.2 | 5.0 |    1031.0 |   6.0 | 6.0 |   6.4 | 1.1 |    10 |    0 |    7.6 |      0 |     8.7 |
+| 9434  | -1.004167 | 2023-02-15 23:00:00 |    0 | 249 |  1.3 | 0.9 | 155 | 41.66056 |  285 | ZARAGOZA AEROPUERTO |  999.9 |  78 |   0.1 | 2.4 |    1031.2 |   4.9 | 4.9 |   6.0 | 1.5 |     7 |    0 |    7.1 |      0 |     8.5 |
+| 9434  | -1.004167 | 2023-02-16 00:00:00 |    0 | 249 |  1.1 | 0.7 | 302 | 41.66056 |  308 | ZARAGOZA AEROPUERTO | 1000.1 |  79 |   0.1 | 2.6 |    1031.5 |   4.0 | 4.0 |   4.9 | 0.6 |    10 |    0 |    6.6 |      0 |     8.3 |
+| 9434  | -1.004167 | 2023-02-16 01:00:00 |    0 | 249 |  0.9 | 0.4 | 223 | 41.66056 |  200 | ZARAGOZA AEROPUERTO | 1000.0 |  82 |   0.2 | 1.8 |    1031.5 |   3.1 | 3.1 |   4.0 | 0.4 |    27 |    0 |    6.1 |      0 |     8.2 |
+| 9434  | -1.004167 | 2023-02-16 02:00:00 |    0 | 249 |  1.5 | 1.0 |  89 | 41.66056 |  118 | ZARAGOZA AEROPUERTO | 1000.1 |  86 |   0.2 | 0.8 |    1031.7 |   2.4 | 2.4 |   3.1 | 0.2 |    10 |    0 |    5.7 |      0 |     8.0 |
 
 ``` r
+
 ## Get daily/annual climatology values for a station
 data_daily <-
   aemet_daily_clim(station, start = "2020-01-01", end = "2020-12-31")
@@ -198,6 +199,7 @@ knitr::kable(head(data_daily))
 
 ``` r
 
+
 ## Get monthly/annual climatology values for a station
 data_monthly <- aemet_monthly_clim(station, year = 2000)
 knitr::kable(head(data_monthly))
@@ -214,6 +216,7 @@ knitr::kable(head(data_monthly))
 
 ``` r
 
+
 ## Get recorded extreme values of temperature for a station
 data_extremes <- aemet_extremes_clim(station, parameter = "T")
 knitr::kable(head(data_extremes))
@@ -221,12 +224,12 @@ knitr::kable(head(data_extremes))
 
 | indicativo | nombre               | ubicacion | codigo | temMin | diaMin | anioMin | mesMin | temMax | diaMax | anioMax | mesMax | temMedBaja | anioMedBaja | mesMedBaja | temMedAlta | anioMedAlta | mesMedAlta | temMedMin | anioMedMin | mesMedMin | temMedMax | anioMedMax | mesMedMax |
 |:-----------|:---------------------|:----------|:-------|-------:|-------:|--------:|-------:|-------:|-------:|--------:|-------:|-----------:|------------:|-----------:|-----------:|------------:|-----------:|----------:|-----------:|----------:|----------:|-----------:|----------:|
-| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |   -104 |      4 |    1971 |      2 |    206 |      8 |    2016 |      7 |         29 |        1953 |          2 |         97 |        2016 |          7 |       -12 |       1957 |         2 |       135 |       2016 |         7 |
-| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |   -114 |      5 |    1963 |      2 |    255 |     27 |    2019 |      7 |         15 |        1956 |          2 |        121 |        1990 |          7 |       -30 |       1956 |         2 |       180 |       1990 |         7 |
-| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |    -63 |      9 |    1964 |      2 |    283 |     19 |    1957 |      7 |         71 |        1971 |          2 |        146 |        2001 |          7 |        19 |       1973 |         2 |       207 |       1997 |         7 |
-| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |    -24 |      3 |    1967 |      2 |    324 |      9 |    2011 |      7 |        104 |        1986 |          2 |        174 |        2014 |          7 |        54 |       1970 |         2 |       237 |       2014 |         7 |
-| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |      5 |      4 |    1967 |      2 |    365 |     29 |    2001 |      7 |        132 |        1984 |          2 |        216 |        2022 |          7 |        85 |       1984 |         2 |       282 |       2022 |         7 |
-| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |     52 |     11 |    1971 |      2 |    432 |     29 |    2019 |      7 |        182 |        1953 |          2 |        267 |        2022 |          7 |       126 |       1969 |         2 |       339 |       2022 |         7 |
+| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |   -104 |      4 |    1971 |      2 |    206 |      8 |    2016 |      7 |         29 |        1953 |          2 |         97 |        2016 |          8 |       -12 |       1957 |         2 |       135 |       2016 |         7 |
+| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |   -114 |      5 |    1963 |      2 |    255 |     27 |    2019 |      7 |         15 |        1956 |          2 |        121 |        1990 |          8 |       -30 |       1956 |         2 |       180 |       1990 |         7 |
+| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |    -63 |      9 |    1964 |      2 |    283 |     19 |    1957 |      7 |         71 |        1971 |          2 |        146 |        2001 |          8 |        19 |       1973 |         2 |       207 |       1997 |         7 |
+| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |    -24 |      3 |    1967 |      2 |    324 |      9 |    2011 |      7 |        104 |        1986 |          2 |        174 |        2014 |          8 |        54 |       1970 |         2 |       237 |       2014 |         7 |
+| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |      5 |      4 |    1967 |      2 |    365 |     29 |    2001 |      7 |        132 |        1984 |          2 |        216 |        2022 |          8 |        85 |       1984 |         2 |       282 |       2022 |         7 |
+| 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  | 023000 |     52 |     11 |    1971 |      2 |    432 |     29 |    2019 |      7 |        182 |        1953 |          2 |        267 |        2022 |          8 |       126 |       1969 |         2 |       339 |       2022 |         7 |
 
 We can also draw a “warming stripes” graph with the downloaded data from
 a weather station. These functions returns `ggplot2` plots:
@@ -330,7 +333,7 @@ terms.
 
 Using **climaemet** for a paper you are writing?. Consider citing it:
 
-Pizarro M, Hernangómez D, Fernández-Avilés G (2022). climaemet: Climate
+Pizarro M, Hernangómez D, Fernández-Avilés G (2023). climaemet: Climate
 AEMET Tools. <https://doi.org/10.5281/zenodo.5205573>,
 <https://hdl.handle.net/10261/250390>
 

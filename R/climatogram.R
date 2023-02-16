@@ -263,9 +263,9 @@ climatogram_period <-
 #' @details
 #' See Details on [`climatol::diagwl()`].
 #'
-#' Climatic data must be passed as a 4x12 matrix of monthly (January to
-#' December) data, in the following order:
-#'   - Row 1:  Mean precipitation.
+#' Climatic data must be passed as a 4x12 matrix or `data.frame` of monthly
+#' (January to December) data, in the following order:
+#'   - Row 1: Mean precipitation.
 #'   - Row 2: Mean maximum daily temperature.
 #'   - Row 3: Mean minimum daily temperature.
 #'   - Row 4: Absolute monthly minimum temperature.
@@ -315,8 +315,11 @@ ggclimat_walter_lieth <- function(dat,
                                   ...) {
   ## Validate inputs----
 
-  if (nrow(dat) < 4) {
-    stop("Four rows of monthly data should be provided.\n")
+  if (!all(dim(dat) == c(4, 12))) {
+    stop(
+      "`dat` should have 4 rows and 12 colums. Your inputs has ",
+      nrow(dat), " rows and ", ncol(dat), " columns."
+    )
   }
 
   # NULL data
@@ -325,12 +328,23 @@ ggclimat_walter_lieth <- function(dat,
     stop("Data with null values, unable to plot the diagram \n")
   }
 
+  # If matrix transform to data frame
+  if (is.matrix(dat)) {
+    dat <- as.data.frame(dat,
+      row.names = c(
+        "p_mes_md", "tm_max_md", "tm_min_md",
+        "ta_min_min"
+      ),
+      col.names = paste0("m", seq_len(12))
+    )
+  }
+
   ## Transform data----
   # Months label
   mlab <- toupper(substr(readr::locale(mlab)$date_names$mon, 1, 1))
 
   # Pivot table and tidydata
-  dat_long <- tibble::as_tibble(t(dat))
+  dat_long <- tibble::as_tibble(as.data.frame(t(dat)))
   # Easier to handle, normalize names
   names(dat_long) <- c("p_mes", "tm_max", "tm_min", "ta_min")
 
@@ -371,7 +385,7 @@ ggclimat_walter_lieth <- function(dat,
   for (j in seq(nrow(dat_long) - 1)) {
     intres <- NULL
 
-    for (i in seq(ncol(dat_long))) {
+    for (i in seq_len(ncol(dat_long))) {
       if (is.character(dat_long[j, i])) {
         # On character don't interpolate
         val <- as.data.frame(dat_long[j, i])
@@ -460,10 +474,11 @@ ggclimat_walter_lieth <- function(dat,
   sub <-
     paste(round(mean(dat_long_end[dat_long_end$interpolate == FALSE, ]$tm), 1),
       "C        ",
-      prettyNum(round(sum(
-        dat_long_end[dat_long_end$interpolate == FALSE, ]$p_mes
-      )),
-      big.mark = ","
+      prettyNum(
+        round(sum(
+          dat_long_end[dat_long_end$interpolate == FALSE, ]$p_mes
+        )),
+        big.mark = ","
       ),
       " mm",
       sep = ""
@@ -576,7 +591,7 @@ ggclimat_walter_lieth <- function(dat,
     dat_long_end[dat_long_end$interpolate == FALSE, c("indrow", "ta_min")]
   x <- NULL
   y <- NULL
-  for (i in seq(nrow(dat_real))) {
+  for (i in seq_len(nrow(dat_real))) {
     if (dat_real[i, ]$ta_min < 0) {
       x <-
         c(
@@ -600,7 +615,7 @@ ggclimat_walter_lieth <- function(dat,
 
   x <- NULL
   y <- NULL
-  for (i in seq(nrow(dat_real))) {
+  for (i in seq_len(nrow(dat_real))) {
     if (dat_real[i, ]$tm_min < 0) {
       x <-
         c(
@@ -630,29 +645,37 @@ ggclimat_walter_lieth <- function(dat,
       data = dat_long_end,
       aes(x = .data$indrow, y = .data$tm),
       color = tcol
-    ) +
-    ggplot2::geom_segment(
-      aes(
-        x = .data$x,
-        y = .data$ylim_res,
-        xend = .data$x,
-        yend = .data$y
-      ),
-      data = tm_max_line,
-      color = tcol,
-      alpha = 0.2
-    ) +
-    ggplot2::geom_segment(
-      aes(
-        x = .data$x,
-        y = .data$ylim_res,
-        xend = .data$x,
-        yend = .data$y
-      ),
-      data = pm_max_line,
-      color = pcol,
-      alpha = 0.2
     )
+
+  if (nrow(tm_max_line > 0)) {
+    wandlplot <- wandlplot +
+      ggplot2::geom_segment(
+        aes(
+          x = .data$x,
+          y = .data$ylim_res,
+          xend = .data$x,
+          yend = .data$y
+        ),
+        data = tm_max_line,
+        color = tcol,
+        alpha = 0.2
+      )
+  }
+
+  if (nrow(pm_max_line > 0)) {
+    wandlplot <- wandlplot +
+      ggplot2::geom_segment(
+        aes(
+          x = .data$x,
+          y = .data$ylim_res,
+          xend = .data$x,
+          yend = .data$y
+        ),
+        data = pm_max_line,
+        color = pcol,
+        alpha = 0.2
+      )
+  }
   if (p3line) {
     wandlplot <- wandlplot +
       ggplot2::geom_line(

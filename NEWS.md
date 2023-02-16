@@ -1,3 +1,17 @@
+# climaemet 1.1.0
+
+-   Add **lubridate** to "Suggest".
+-   Add `aemet_munic` dataset.
+-   Add `scales` to Suggests.
+-   Add forecast functions:
+    -   `aemet_forecast_daily()`
+    -   `aemet_forecast_tidy()`
+    -   `aemet_forecast_hourly()`
+    -   `aemet_forecast_vars_available()`
+-   Improve `get_data_aemet()`/`get_metadata_aemet()` to support more endpoints.
+-   Add new vignette: `vignette("extending-climaemet")`.
+-   Fix error on `ggclimat_walter_lieth()` (#35).
+
 # climaemet 1.0.2
 
 -   Fix docs as per CRAN request

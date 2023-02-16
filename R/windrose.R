@@ -317,13 +317,6 @@ ggwindrose <- function(speed,
     stop("`speed_cuts` should be numeric or NA")
   }
 
-  # speed_cuts <- sort(unique(speed_cuts))
-
-  # if (!missing(speed_cuts) && length(speed_cuts) < 3) {
-  #   warning("Using the minimum 3 speed cuts")
-  #   speed_cuts <- 3
-  # }
-
   optimal_n_dir <- c(4, 8, 16)
 
   if (is.na(match(n_directions, optimal_n_dir))) {
@@ -404,13 +397,14 @@ ggwindrose <- function(speed,
   # Dataframe suitable for plotting
   if (include_facet) {
     ggplot_df <- as.data.frame(table(dir_bin, spd_bin, facet))
-    ggplot_df$proportion <- unlist(by(
-      ggplot_df$Freq,
-      ggplot_df$facet, function(x) {
-        x / sum(x)
-      }
-    ),
-    use.names = FALSE
+    ggplot_df$proportion <- unlist(
+      by(
+        ggplot_df$Freq,
+        ggplot_df$facet, function(x) {
+          x / sum(x)
+        }
+      ),
+      use.names = FALSE
     )
   } else {
     ggplot_df <- data.frame(table(dir_bin, spd_bin))
