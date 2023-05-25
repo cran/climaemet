@@ -1,3 +1,8 @@
+# climaemet 1.1.1
+
+-   Fix an error on the conversion to **sf** objects.
+-   Documentation improvements.
+
 # climaemet 1.1.0
 
 -   Add **lubridate** to "Suggest".
