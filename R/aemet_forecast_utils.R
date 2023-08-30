@@ -207,7 +207,7 @@ aemet_hlp_tidy_forc_hourly <- function(x, var) {
       "vientoAndRachaMax_direccion",
       "vientoAndRachaMax_velocidad"
     )]
-    master <- tidyr::drop_na(master, c("vientoAndRachaMax"))
+    master <- tidyr::drop_na(master, "vientoAndRachaMax")
 
     # Regenerate
     tojoin <- intersect(names(master), names(cleandf))
@@ -317,4 +317,60 @@ aemet_hlp_tidy_forc_daily <- function(x, var) {
   }
 
   return(end_w)
+}
+
+
+# Extract metadata from forecast
+aemet_hlp_meta_forecast <- function(meta) {
+  keepcols <- get_col_first_class(meta)
+
+  keep <- meta[keepcols == "list"]$campos[[1]]
+
+  # Cumulative metadata
+  base_df <- tidyr::drop_na(keep[, c(
+    "id", "descripcion", "tipo_datos",
+    "requerido"
+  )])
+  base_df <- dplyr::as_tibble(base_df)
+
+  # Extract fields data
+  pr <- keep$prediccion
+  pr <- pr[lapply(pr, length) > 0]
+  pr <- pr[[1]][[1]][[1]]
+
+  # Get data to cum
+  base_df <- dplyr::bind_rows(
+    base_df,
+    pr[, names(base_df)]
+  )
+  base_df <- tidyr::drop_na(base_df)
+
+  # Rest of fields
+  rst <- setdiff(names(pr), names(base_df))
+
+  others <- lapply(rst, function(x) {
+    dd <- pr[[x]]
+    dd <- dd[lapply(dd, length) > 0][[1]]
+
+    if ("dato" %in% names(dd)) {
+      dat <- dd$dato
+      dat <- dat[lapply(dat, length) > 0][[1]]
+      dd <- dplyr::bind_rows(dd, dat)[, setdiff(names(dd), "dato")]
+    }
+
+    dd$id <- paste0(x, "_", dd$id)
+    tidyr::drop_na(dd)
+  })
+  others_df <- dplyr::bind_rows(others)
+
+  end <- dplyr::bind_rows(base_df, others_df)
+  end$id <- gsub("_value$", "", end$id)
+
+  # Same format than rest of functions
+  end <- as.data.frame(end)
+  base_top <- meta[keepcols != "list"]
+
+  base_top <- base_top[rep(1, nrow(end)), ]
+  base_top$campos <- end
+  base_top
 }

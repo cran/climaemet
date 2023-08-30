@@ -12,22 +12,25 @@ aemet_daily_clim(
   start = Sys.Date() - 7,
   end = Sys.Date(),
   verbose = FALSE,
-  return_sf = FALSE
+  return_sf = FALSE,
+  extract_metadata = FALSE
 )
 
 aemet_daily_period(
   station,
-  start = 2020,
-  end = 2020,
+  start = as.integer(format(Sys.Date(), "\%Y")),
+  end = start,
   verbose = FALSE,
-  return_sf = FALSE
+  return_sf = FALSE,
+  extract_metadata = FALSE
 )
 
 aemet_daily_period_all(
-  start = 2020,
-  end = 2020,
+  start = as.integer(format(Sys.Date(), "\%Y")),
+  end = start,
   verbose = FALSE,
-  return_sf = FALSE
+  return_sf = FALSE,
+  extract_metadata = FALSE
 )
 }
 \arguments{
@@ -42,10 +45,14 @@ information between the client and server.}
 \item{return_sf}{Logical \code{TRUE} or \code{FALSE}.
 Should the function return an \code{sf} spatial object? If \code{FALSE}
 (the default value) it returns a tibble. Note that you need to
-have the \code{sf} package installed.}
+have the \CRANpkg{sf} package installed.}
+
+\item{extract_metadata}{Logical \code{TRUE/FALSE}. On \code{TRUE} the output is
+a \code{tibble} with the description of the fields. See also
+\code{\link[=get_metadata_aemet]{get_metadata_aemet()}}.}
 }
 \value{
-A tibble or a \code{sf} object
+A \CRANpkg{tibble} or a \CRANpkg{sf} object
 }
 \description{
 Get climatology values for a station or for all the available stations.
@@ -71,6 +78,11 @@ You need to set your API Key globally using \code{\link[=aemet_api_key]{aemet_ap
 library(tibble)
 obs <- aemet_daily_clim(c("9434", "3195"))
 glimpse(obs)
+
+# Metadata
+meta <- aemet_daily_clim(c("9434", "3195"), extract_metadata = TRUE)
+
+glimpse(meta$campos)
 \dontshow{\}) # examplesIf}
 }
 \seealso{

@@ -4,7 +4,7 @@
 #'
 #' @param tbl a tibble
 #' @param preserve vector of names to preserve
-#' @return a `tibble`.
+#' @return A \CRANpkg{tibble} object
 #' @noRd
 aemet_hlp_guess <-
   function(tbl,
@@ -33,12 +33,15 @@ aemet_hlp_guess <-
 #' @param tbl a tibble
 #' @param lat,lon latitude and longitude fiels
 #' @param verbose TRUE/FALSE
-#' @return a tibble or a `sf` object
+#' @return A \CRANpkg{tibble} or a \CRANpkg{sf} object
 #' @noRd
 aemet_hlp_sf <- function(tbl, lat, lon, verbose = FALSE) {
   # Check if sf is installed
   if (!requireNamespace("sf", quietly = TRUE)) {
-    message("\n\npackage sf required for spatial conversion, please install it first")
+    message(
+      "\n\npackage sf required for spatial conversion, ",
+      "please install it first"
+    )
     message("\nReturnig a tibble")
     return(tbl)
   }
@@ -68,3 +71,6 @@ aemet_hlp_sf <- function(tbl, lat, lon, verbose = FALSE) {
     return(tbl)
   }
 }
+
+# Default station for metadata
+default_station <- "9434"

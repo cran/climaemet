@@ -12,7 +12,7 @@ status](https://www.r-pkg.org/badges/version/climaemet)](https://CRAN.R-project.
 [![CRAN_latest_release_date](https://www.r-pkg.org/badges/last-release/climaemet)](https://cran.r-project.org/package=climaemet)
 [![CRAN
 results](https://badges.cranchecks.info/worst/climaemet.svg)](https://cran.r-project.org/web/checks/check_results_climaemet.html)
-[![r-universe](https://ropenspain.r-universe.dev/badges/climaemet)](https://ropenspain.r-universe.dev/)
+[![r-universe](https://ropenspain.r-universe.dev/badges/climaemet)](https://ropenspain.r-universe.dev/climaemet)
 [![R-CMD-check](https://github.com/rOpenSpain/climaemet/actions/workflows/roscron-check-full.yaml/badge.svg)](https://github.com/rOpenSpain/climaemet/actions/workflows/roscron-check-full.yaml)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5205573-blue)](https://doi.org/10.5281/zenodo.5205573)
 [![metacran
@@ -68,13 +68,10 @@ You can install the developing version of **climaemet** using the
 [r-universe](https://ropenspain.r-universe.dev/climaemet):
 
 ``` r
-# Enable this universe
-options(repos = c(
-  ropenspain = "https://ropenspain.r-universe.dev",
-  CRAN = "https://cloud.r-project.org"
-))
-
-install.packages("climaemet")
+# Install climaemet in R:
+install.packages("climaemet",
+  repos = c("https://ropenspain.r-universe.dev", "https://cloud.r-project.org")
+)
 ```
 
 Alternatively, you can install the developing version of **climaemet**
@@ -120,20 +117,20 @@ library(climaemet)
 # See a tibble in action
 
 aemet_last_obs("9434")
-#> # A tibble: 23 × 25
+#> # A tibble: 24 × 25
 #>    idema   lon fint                 prec   alt  vmax    vv    dv   lat  dmax
 #>    <chr> <dbl> <dttm>              <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1 9434  -1.00 2023-05-24 18:00:00     0   249   8.2   5     314  41.7   318
-#>  2 9434  -1.00 2023-05-24 19:00:00     0   249   8.2   4.9   323  41.7   313
-#>  3 9434  -1.00 2023-05-24 20:00:00     0   249   8.6   4.1   326  41.7   318
-#>  4 9434  -1.00 2023-05-24 21:00:00     0   249   7.8   5     322  41.7   320
-#>  5 9434  -1.00 2023-05-24 22:00:00     0   249   9.5   6.7   314  41.7   315
-#>  6 9434  -1.00 2023-05-24 23:00:00     0   249  10.7   7.7   304  41.7   305
-#>  7 9434  -1.00 2023-05-25 00:00:00     0   249  11.1   7.6   310  41.7   323
-#>  8 9434  -1.00 2023-05-25 01:00:00     0   249  11.3   7.3   300  41.7   308
-#>  9 9434  -1.00 2023-05-25 02:00:00     0   249   8.9   5.8   302  41.7   295
-#> 10 9434  -1.00 2023-05-25 03:00:00     0   249   9.1   6     307  41.7   293
-#> # ℹ 13 more rows
+#>  1 9434  -1.00 2023-08-28 15:00:00     0   249  19.9  11.8   317  41.7   313
+#>  2 9434  -1.00 2023-08-28 16:00:00     0   249  16.4   9.6   317  41.7   320
+#>  3 9434  -1.00 2023-08-28 17:00:00     0   249  15.2   8.8   323  41.7   330
+#>  4 9434  -1.00 2023-08-28 18:00:00     0   249  13     7.3   323  41.7   330
+#>  5 9434  -1.00 2023-08-28 19:00:00     0   249  11.5   5.8   326  41.7   303
+#>  6 9434  -1.00 2023-08-28 20:00:00     0   249  10.6   5.8   322  41.7   330
+#>  7 9434  -1.00 2023-08-28 21:00:00     0   249  12.8   8     323  41.7   325
+#>  8 9434  -1.00 2023-08-28 22:00:00     0   249  11.7   7     325  41.7   335
+#>  9 9434  -1.00 2023-08-28 23:00:00     0   249  11     6.7   298  41.7   310
+#> 10 9434  -1.00 2023-08-29 00:00:00     0   249  14.2   8.3   290  41.7   303
+#> # ℹ 14 more rows
 #> # ℹ 15 more variables: ubi <chr>, pres <dbl>, hr <dbl>, stdvv <dbl>, ts <dbl>,
 #> #   pres_nmar <dbl>, tamin <dbl>, ta <dbl>, tamax <dbl>, tpr <dbl>,
 #> #   stddv <dbl>, inso <dbl>, tss5cm <dbl>, pacutp <dbl>, tss20cm <dbl>
@@ -170,49 +167,48 @@ data_observation <- aemet_last_obs(station)
 knitr::kable(head(data_observation))
 ```
 
-| idema |       lon | fint                | prec | alt | vmax |  vv |  dv |      lat | dmax | ubi                 |  pres |  hr | stdvv |   ts | pres_nmar | tamin |   ta | tamax |  tpr | stddv | inso | tss5cm | pacutp | tss20cm |
-|:------|----------:|:--------------------|-----:|----:|-----:|----:|----:|---------:|-----:|:--------------------|------:|----:|------:|-----:|----------:|------:|-----:|------:|-----:|------:|-----:|-------:|-------:|--------:|
-| 9434  | -1.004167 | 2023-05-24 18:00:00 |    0 | 249 |  8.2 | 5.0 | 314 | 41.66056 |  318 | ZARAGOZA AEROPUERTO | 984.7 |  49 |   1.1 | 24.4 |    1013.6 |  22.7 | 22.8 |  23.4 | 11.6 |    10 |    0 |   28.4 |      0 |    25.2 |
-| 9434  | -1.004167 | 2023-05-24 19:00:00 |    0 | 249 |  8.2 | 4.9 | 323 | 41.66056 |  313 | ZARAGOZA AEROPUERTO | 985.7 |  52 |   0.9 | 22.9 |    1014.7 |  22.1 | 22.1 |  22.9 | 11.8 |    11 |    0 |   27.1 |      0 |    25.4 |
-| 9434  | -1.004167 | 2023-05-24 20:00:00 |    0 | 249 |  8.6 | 4.1 | 326 | 41.66056 |  318 | ZARAGOZA AEROPUERTO | 986.6 |  59 |   0.8 | 20.5 |    1015.8 |  20.0 | 20.0 |  22.1 | 11.8 |    12 |    0 |   26.0 |      0 |    25.5 |
-| 9434  | -1.004167 | 2023-05-24 21:00:00 |    0 | 249 |  7.8 | 5.0 | 322 | 41.66056 |  320 | ZARAGOZA AEROPUERTO | 987.6 |  62 |   0.9 | 19.4 |    1017.0 |  18.7 | 18.7 |  20.0 | 11.2 |     9 |    0 |   25.0 |      0 |    25.5 |
-| 9434  | -1.004167 | 2023-05-24 22:00:00 |    0 | 249 |  9.5 | 6.7 | 314 | 41.66056 |  315 | ZARAGOZA AEROPUERTO | 987.7 |  64 |   1.1 | 17.8 |    1017.3 |  17.4 | 17.4 |  18.7 | 10.5 |     9 |    0 |   23.9 |      0 |    25.4 |
-| 9434  | -1.004167 | 2023-05-24 23:00:00 |    0 | 249 | 10.7 | 7.7 | 304 | 41.66056 |  305 | ZARAGOZA AEROPUERTO | 987.8 |  65 |   0.9 | 17.5 |    1017.4 |  17.1 | 17.2 |  17.5 | 10.5 |     6 |    0 |   23.0 |      0 |    25.2 |
+| idema |       lon | fint                | prec | alt | vmax |   vv |  dv |      lat | dmax | ubi                 |  pres |  hr | stdvv |   ts | pres_nmar | tamin |   ta | tamax |  tpr | stddv | inso | tss5cm | pacutp | tss20cm |
+|:------|----------:|:--------------------|-----:|----:|-----:|-----:|----:|---------:|-----:|:--------------------|------:|----:|------:|-----:|----------:|------:|-----:|------:|-----:|------:|-----:|-------:|-------:|--------:|
+| 9434  | -1.004167 | 2023-08-28 15:00:00 |    0 | 249 | 19.9 | 11.8 | 317 | 41.66056 |  313 | ZARAGOZA AEROPUERTO | 987.1 |  42 |   1.6 | 31.3 |    1015.9 |  24.1 | 25.0 |  25.3 | 11.2 |     8 | 59.1 |   34.2 |      0 |    30.0 |
+| 9434  | -1.004167 | 2023-08-28 16:00:00 |    0 | 249 | 16.4 |  9.6 | 317 | 41.66056 |  320 | ZARAGOZA AEROPUERTO | 986.9 |  40 |   1.7 | 28.7 |    1015.7 |  24.2 | 24.9 |  25.2 | 10.4 |     9 | 20.6 |   33.8 |      0 |    30.4 |
+| 9434  | -1.004167 | 2023-08-28 17:00:00 |    0 | 249 | 15.2 |  8.8 | 323 | 41.66056 |  330 | ZARAGOZA AEROPUERTO | 986.8 |  39 |   1.8 | 27.5 |    1015.6 |  24.9 | 24.9 |  26.1 | 10.0 |    10 | 53.9 |   33.7 |      0 |    30.7 |
+| 9434  | -1.004167 | 2023-08-28 18:00:00 |    0 | 249 | 13.0 |  7.3 | 323 | 41.66056 |  330 | ZARAGOZA AEROPUERTO | 986.4 |  41 |   1.4 | 25.5 |    1015.2 |  24.4 | 24.4 |  25.4 | 10.3 |    11 | 23.6 |   32.7 |      0 |    31.0 |
+| 9434  | -1.004167 | 2023-08-28 19:00:00 |    0 | 249 | 11.5 |  5.8 | 326 | 41.66056 |  303 | ZARAGOZA AEROPUERTO | 986.8 |  47 |   1.5 | 23.6 |    1015.8 |  23.0 | 23.0 |  24.6 | 11.1 |    11 | 11.9 |   31.4 |      0 |    31.2 |
+| 9434  | -1.004167 | 2023-08-28 20:00:00 |    0 | 249 | 10.6 |  5.8 | 322 | 41.66056 |  330 | ZARAGOZA AEROPUERTO | 987.1 |  52 |   1.2 | 22.2 |    1016.2 |  21.9 | 21.9 |  23.0 | 11.6 |    11 |  0.0 |   30.3 |      0 |    31.2 |
 
 ``` r
 
 ## Get daily/annual climatology values for a station
-data_daily <-
-  aemet_daily_clim(station, start = "2020-01-01", end = "2020-12-31")
+data_daily <- aemet_daily_clim(station, start = "2022-01-01", end = "2022-12-31")
 
 knitr::kable(head(data_daily))
 ```
 
 | fecha      | indicativo | nombre               | provincia | altitud | tmed | prec | tmin | horatmin | tmax | horatmax | dir | velmedia | racha | horaracha | sol | presMax | horaPresMax | presMin | horaPresMin |
 |:-----------|:-----------|:---------------------|:----------|--------:|-----:|:-----|-----:|:---------|-----:|:---------|:----|---------:|------:|:----------|----:|--------:|:------------|--------:|:------------|
-| 2020-01-01 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  1.0 | 0,0  |  0.3 | 06:10    |  1.8 | 14:50    | 28  |      1.7 |   5.6 | 04:40     | 0.0 |  1004.6 | 10          |  1001.9 | 15          |
-| 2020-01-02 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  0.6 | 0,0  | -0.3 | 08:10    |  1.6 | 18:40    | 29  |      1.1 |   3.6 | 00:40     | 0.0 |  1003.4 | 10          |  1000.7 | 16          |
-| 2020-01-03 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  4.2 | 0,0  | -0.1 | 07:10    |  8.5 | 19:10    | 30  |      4.4 |   8.3 | 21:40     | 2.4 |  1003.6 | 10          |  1000.7 | Varias      |
-| 2020-01-04 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  8.6 | 0,0  |  3.6 | 06:40    | 13.6 | 14:50    | 33  |      5.0 |  12.5 | 12:30     | 8.2 |  1003.9 | 10          |  1001.2 | 15          |
-| 2020-01-05 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  8.2 | 0,0  |  3.0 | 23:00    | 13.3 | 15:20    | 30  |      3.6 |  10.3 | 05:30     | 8.9 |  1001.9 | 00          |   996.9 | Varias      |
-| 2020-01-06 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  2.3 | 0,0  |  1.4 | 23:59    |  3.2 | 00:00    | 29  |      3.1 |   7.2 | 20:20     | 0.0 |  1001.7 | 22          |   998.6 | 04          |
+| 2022-01-01 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  4.5 | 0,0  |  3.2 | 07:50    |  5.8 | 15:00    | 24  |      1.7 |   5.6 | 17:10     | 0.0 |  1000.6 | 10          |   997.5 | 15          |
+| 2022-01-02 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  5.6 | 0,0  |  2.8 | 08:00    |  8.3 | 17:50    | 24  |      2.2 |   6.7 | 19:20     | 1.7 |  1000.2 | 10          |   997.1 | 16          |
+| 2022-01-03 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  7.8 | 0,0  |  2.5 | 06:50    | 13.0 | 15:10    | 10  |      1.1 |   5.6 | 21:40     | 5.8 |   997.6 | 00          |   988.4 | 24          |
+| 2022-01-04 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 | 11.2 | 7,0  |  5.3 | 07:30    | 17.2 | 14:20    | 32  |      2.8 |  16.4 | 19:00     | 3.5 |   988.4 | 00          |   976.6 | 17          |
+| 2022-01-05 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  7.0 | 0,0  |  4.2 | 23:59    |  9.9 | 14:20    | 31  |      9.2 |  18.6 | 05:10     | 4.9 |   987.9 | 10          |   982.1 | 00          |
+| 2022-01-06 | 9434       | ZARAGOZA, AEROPUERTO | ZARAGOZA  |     249 |  5.6 | 0,0  |  2.9 | 06:20    |  8.2 | 15:20    | 30  |      7.5 |  16.4 | 03:20     | 8.9 |   991.4 | 24          |   986.4 | 00          |
 
 ``` r
 
 
 ## Get monthly/annual climatology values for a station
-data_monthly <- aemet_monthly_clim(station, year = 2000)
+data_monthly <- aemet_monthly_clim(station, year = 2022)
 knitr::kable(head(data_monthly))
 ```
 
-| fecha  | indicativo | p_max    | n_cub |  hr | n_gra | n_fog | inso | q_max      | nw_55 |  q_mar | q_med | tm_min | ta_max   | ts_min | nt_30 | nv_0050 | n_des | w_racha     | np_100 | n_nub | p_sol | nw_91 | ts_20 | np_001 | ta_min   |   e | np_300 | nv_1000 | evap | p_mes | n_llu | n_tor | ts_10 | w_med | nt_00 | ti_max | n_nie | tm_mes | tm_max | nv_0100 | ts_50 | q_min     | np_010 |
-|:-------|:-----------|:---------|------:|----:|------:|------:|-----:|:-----------|------:|-------:|------:|-------:|:---------|-------:|------:|--------:|------:|:------------|-------:|------:|------:|------:|------:|-------:|:---------|----:|-------:|--------:|-----:|------:|------:|------:|------:|------:|------:|-------:|------:|-------:|-------:|--------:|------:|:----------|-------:|
-| 2000-1 | 9434       | 8.0(15)  |     8 |  77 |     0 |     6 |  5.4 | 1003.5(11) |     5 | 1026.0 | 994.1 |   -0.1 | 16.3(31) |    6.2 |     0 |       0 |    12 | 32/22.2(22) |      0 |    11 |    56 |     0 |   4.9 |      3 | -5.8(12) |  65 |      0 |       5 |  861 |  14.9 |     3 |     0 |   5.0 |    15 |    16 |    1.0 |     0 |    4.3 |    8.7 |       0 |   5.6 | 979.7(14) |      2 |
-| 2000-2 | 9434       | 0.0(–)   |     0 |  60 |     0 |     0 |  7.7 | 1004.9(04) |     9 | 1027.1 | 996.0 |    4.8 | 20.8(27) |   10.7 |     0 |       0 |     8 | 33/21.4(17) |      0 |    21 |    72 |     0 |  11.8 |      0 | -1.5(06) |  79 |      0 |       0 | 1638 |   0.0 |     0 |     0 |  12.7 |    16 |     4 |   13.4 |     0 |   10.8 |   16.9 |       0 |  10.6 | 988.6(17) |      0 |
-| 2000-3 | 9434       | 5.4(22)  |     4 |  58 |     0 |     0 |  7.8 | 1001.0(09) |     8 | 1020.3 | 989.5 |    6.0 | 24.0(11) |   11.0 |     0 |       0 |     8 | 32/20.0(15) |      0 |    19 |    65 |     0 |  14.9 |      7 | -0.8(03) |  83 |      0 |       0 | 2062 |  11.1 |     7 |     0 |  15.7 |    18 |     1 |   12.1 |     0 |   12.0 |   17.9 |       0 |  13.6 | 976.5(28) |      4 |
-| 2000-4 | 9434       | 22.2(26) |     8 |  61 |     0 |     0 |  6.2 | 991.5(07)  |     7 | 1008.0 | 977.8 |    8.4 | 27.2(25) |   14.9 |     0 |       0 |     1 | 10/20.0(02) |      1 |    21 |    46 |     0 |  16.7 |     10 | 1.7(06)  |  99 |      0 |       0 | 1730 |  49.1 |    14 |     1 |  17.5 |    17 |     0 |   11.7 |     0 |   13.7 |   18.9 |       0 |  15.2 | 959.5(02) |      6 |
-| 2000-5 | 9434       | 23.4(05) |     6 |  61 |     2 |     2 |  8.7 | 991.4(30)  |    NA | 1014.4 | 984.7 |   13.2 | 33.0(30) |   18.8 |     5 |       0 |     1 | NA          |      3 |    24 |    59 |    NA |  23.5 |     13 | 9.2(01)  | 143 |      0 |       1 | 2116 |  67.5 |    11 |     8 |  24.8 |    13 |     0 |   21.5 |     0 |   19.5 |   25.7 |       0 |  20.8 | 977.5(06) |      8 |
-| 2000-6 | 9434       | 12.2(09) |     2 |  57 |     0 |     0 | 11.3 | 995.0(14)  |    NA | 1017.1 | 987.6 |   16.0 | 37.5(27) |   20.3 |    19 |       0 |    18 | NA          |      1 |    10 |    75 |    NA |  27.7 |      6 | 11.0(08) | 164 |      0 |       0 | 2955 |  34.9 |     8 |     4 |  29.2 |    21 |     0 |   16.5 |     0 |   23.0 |   29.8 |       0 |  26.1 | 977.9(09) |      5 |
+| fecha  | indicativo | p_max    | n_cub |  hr | n_gra | n_fog | inso | q_max      | nw_55 |  q_mar | q_med | tm_min | ta_max   | ts_min | nt_30 | nv_0050 | n_des | w_racha     | np_100 | n_nub | p_sol | nw_91 | np_001 | ta_min   | w_rec |   e | np_300 | nv_1000 | evap | p_mes | n_llu | n_tor | w_med | nt_00 | ti_max | n_nie | tm_mes | tm_max | nv_0100 | q_min     | np_010 |
+|:-------|:-----------|:---------|------:|----:|------:|------:|-----:|:-----------|------:|-------:|------:|-------:|:---------|-------:|------:|--------:|------:|:------------|-------:|------:|------:|------:|-------:|:---------|------:|----:|-------:|--------:|-----:|------:|------:|------:|------:|------:|-------:|------:|-------:|-------:|--------:|:----------|-------:|
+| 2022-1 | 9434       | 7.0(04)  |     4 |  68 |     0 |     3 |  7.6 | 1005.7(29) |     7 | 1028.5 | 996.7 |    1.0 | 17.2(04) |   11.2 |     0 |       0 |    21 | 31/24.2(31) |      0 |     6 |    79 |     0 |      2 | -3.2(23) |   353 |  65 |      0 |       3 | 1021 |   7.4 |     4 |     0 |    15 |    16 |    5.8 |     0 |    6.3 |   11.6 |       0 | 976.6(04) |      1 |
+| 2022-2 | 9434       | 0.4(13)  |     2 |  57 |     0 |     2 |  7.8 | 1002.2(08) |     9 | 1025.4 | 994.3 |    5.0 | 20.5(02) |    9.3 |     0 |       0 |     7 | 30/23.9(01) |      0 |    19 |    74 |     0 |      2 | 0.3(10)  |   408 |  73 |      0 |       0 | 1632 |   0.8 |     4 |     0 |    17 |     0 |   12.4 |     0 |   10.4 |   15.8 |       0 | 982.3(14) |      0 |
+| 2022-3 | 9434       | 6.2(11)  |    19 |  69 |     0 |     0 |  3.8 | 997.2(22)  |     7 | 1019.3 | 988.4 |    7.4 | 19.5(01) |   11.8 |     0 |       0 |     0 | 31/18.6(17) |      0 |    12 |    32 |     0 |     13 | 3.0(09)  |   388 |  92 |      0 |       0 | 1367 |  33.6 |    13 |     1 |    16 |     0 |   10.5 |     0 |   11.1 |   14.8 |       0 | 971.2(30) |      8 |
+| 2022-4 | 9434       | 11.8(27) |     9 |  56 |     0 |     0 |  8.5 | 996.0(29)  |     9 | 1014.1 | 983.9 |    8.8 | 25.8(16) |   14.2 |     0 |       0 |     5 | 28/22.2(08) |      1 |    16 |    64 |     0 |      9 | 0.5(04)  |   469 |  95 |      0 |       0 | 2357 |  31.0 |    11 |     0 |    20 |     0 |   10.2 |     0 |   14.1 |   19.3 |       0 | 965.4(23) |      7 |
+| 2022-5 | 9434       | 5.6(03)  |     6 |  45 |     0 |     0 | 10.7 | 994.8(26)  |     5 | 1016.2 | 986.6 |   14.8 | 35.3(21) |   19.9 |    14 |       0 |    11 | 31/19.2(26) |      0 |    14 |    74 |     0 |      5 | 11.3(03) |   399 | 118 |      0 |       0 | 3486 |  13.8 |     5 |     2 |    18 |     0 |   18.3 |     0 |   21.6 |   28.2 |       0 | 972.7(29) |      4 |
+| 2022-6 | 9434       | 6.4(16)  |     0 |  38 |     0 |     0 | 11.5 | 992.3(12)  |    12 | 1013.1 | 984.1 |   19.5 | 41.2(15) |   24.0 |    26 |       0 |     6 | 28/22.5(11) |      0 |    24 |    76 |     0 |      4 | 14.4(28) |   383 | 132 |      0 |       0 | 3560 |   9.4 |     5 |     5 |    16 |     0 |   24.8 |     0 |   26.7 |   33.9 |       0 | 975.2(19) |      3 |
 
 ``` r
 
@@ -243,8 +239,6 @@ climatestripes_station("9434", start = 1980, end = 2020) +
   theme(plot.title = element_text(size = 10))
 ```
 
-<img src="man/figures/README-climatestripes-1.png" width="100%" />
-
 Furthermore, we can draw the well-known Walter & Lieth climatic diagram
 for a weather station and over a specified period of time:
 
@@ -253,25 +247,18 @@ for a weather station and over a specified period of time:
 climatogram_normal("9434", labels = "en")
 ```
 
-<img src="man/figures/README-climatogram-1.png" width="100%" />
-
 Additionally, we may be interested in drawing the wind speed and
 direction over a period of time for the data downloaded from a weather
 station.:
 
 ``` r
 # Plot a windrose showing the wind speed and direction for a station over a days period.
-windrose_days(
-  "9434",
-  start = "2010-01-01",
-  end = "2020-12-31",
-  n_speeds = 5,
-  speed_cuts = c(2.5, 5, 7.5, 10, 12.5, 15)
+windrose_days("9434",
+  start = "2010-01-01", end = "2020-12-31",
+  n_speeds = 5, speed_cuts = c(2.5, 5, 7.5, 10, 12.5, 15)
 ) +
   theme(plot.title = element_text(size = 10))
 ```
-
-<img src="man/figures/README-windrose-1.png" width="100%" />
 
 ## … and spatial!
 
@@ -288,23 +275,16 @@ Geodetic System (WGS)** and return coordinates in latitude/longitude
 library(ggplot2)
 library(dplyr)
 
-all_stations <- aemet_last_obs(return_sf = TRUE)
-# Last hour
-all_last <-
-  all_stations %>% filter(fint == all_stations[["fint"]][1])
+all_stations <- aemet_daily_clim(
+  start = "2021-01-08", end = "2021-01-08",
+  return_sf = TRUE
+)
 
-last_hour <- max(all_last$fint)
-
-
-ggplot(all_last) +
-  geom_sf(aes(colour = ta),
-    shape = 19,
-    size = 2,
-    alpha = 0.5
-  ) +
+ggplot(all_stations) +
+  geom_sf(aes(colour = tmed), shape = 19, size = 2, alpha = 0.5) +
   labs(
-    title = "Temperature in Spain",
-    subtitle = last_hour,
+    title = "Average temperature in Spain",
+    subtitle = "8 Jan 2021",
     color = "Max temp.\n(celsius)",
     caption = "Source: AEMET"
   ) +
@@ -333,9 +313,12 @@ terms.
 
 Using **climaemet** for a paper you are writing?. Consider citing it:
 
-Pizarro M, Hernangómez D, Fernández-Avilés G (2023). climaemet: Climate
-AEMET Tools. <https://doi.org/10.5281/zenodo.5205573>,
-<https://hdl.handle.net/10261/250390>
+<p>
+Pizarro M, Hernangómez D, Fernández-Avilés G (2021). <em>climaemet:
+Climate AEMET Tools</em>.
+<a href="https://doi.org/10.5281/zenodo.5205573">doi:10.5281/zenodo.5205573</a>,
+<a href="https://hdl.handle.net/10261/250390">https://hdl.handle.net/10261/250390</a>.
+</p>
 
 A BibTeX entry for LaTeX users is:
 

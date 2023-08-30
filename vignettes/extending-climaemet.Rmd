@@ -9,6 +9,9 @@ resource_files:
    - vignettes/example-gif.gif
 ---
 
+<!-- extending-climaemet.Rmd is generated from extending-climaemet.Rmd.orig. Please edit that file -->
+
+
 
 
 **climaemet** provides several functions for accessing a selection of endpoints of the [AEMET API tool](https://opendata.aemet.es/dist/index.html?). However, this package does not cover in full all the capabilities of the API.
@@ -64,31 +67,43 @@ cat(paste("---\n\n", clean, "\n---"))
 
  AGENCIA ESTATAL DE METEOROLOGÍA
 PREDICCIÓN GENERAL PARA ESPAÑA 
-DÍA 23 DE MAYO DE 2023 A LAS 10:11 HORA OFICIAL
-PREDICCIÓN VÁLIDA PARA EL MARTES 23
+DÍA 23 DE AGOSTO DE 2023 A LAS 08:21 HORA OFICIAL
+PREDICCIÓN VÁLIDA PARA EL MIÉRCOLES 23
 
 A.- FENÓMENOS SIGNIFICATIVOS
-Chubascos y tormentas localmente fuertes o muy fuertes en áreas
-de la mitad oriental peninsular, sobre todo en puntos del sureste
-donde además serán persistentes.
+Temperaturas significativamente altas en gran parte del país.
+Posibilidad de alguna tormenta localmente fuerte en Pirineos.
+Intervalos de viento fuerte en el Estrecho.
 
 B.- PREDICCIÓN
-Se esperan cielos nubosos o cubiertos en buena parte de la
-Península con chubascos y tormentas, ocasionalmente con granizo,
-más dispersos y menos probables en áreas del cuadrante noroeste
-y más frecuentes e intensos en la mitad oriental donde serán
-localmente fuertes o muy fuertes, sobre todo en puntos del sureste
-donde además serán persistentes. Intervalos nubosos y nubosidad
-de evolución en Baleares, con probables chubascos acompañados de
-barro. En Canarias, intervalos nubosos y nubosidad de evolución
-en el interior de islas de mayor relieve. Temperaturas diurnas con
-ligeros ascensos en la mayor parte de la Península, aunque en
-zonas del sureste se esperan descensos. Nocturnas en ascenso en
-gran parte de la mitad norte peninsular.  Vientos de Poniente en
-el Estrecho y Alborán, del este y noreste en la zona de Levante y
-Baleares, y de componente norte en la mitad norte peninsular, con
-intervalos de noreste fuerte en la costa noroeste de Galicia. En
-Canarias, de componente norte.
+En la mayor parte del país predominarán cielos poco nubosos o
+despejados con nubes altas, salvo nubes bajas matinales en
+litorales de Galicia, Cantábrico occidental, Estrecho, Melilla y
+Baleares. No se descarta alguna precipitación matinal en el norte
+de Galicia. Por la tarde abundante nubosidad de evolución en
+amplias zonas del tercio norte interior, con posibles chubascos y
+tormentas dispersos, más probables en montaña, en especial en el
+entorno de Pirineos, donde pueden ser localmente fuertes. En
+Canarias intervalos nubosos y abundante nubosidad media y alta,
+sin descartar algún chubasco o tormenta en las islas de mayor
+relieve.
+
+Posibles bancos de nieblas matinales en litorales de Galicia,
+Cantábrico y Estrecho, así como calima alta en Canarias.
+
+Temperaturas mínimas en aumento en el tercio noroeste peninsular
+y oeste de Andalucía. Máximas en aumento en el extremo norte,
+notable en el Cantábrico, incluso extraordinario en el País
+Vasco. Sin grandes cambios en el resto, se prevé alcanzar los
+34-36 grados en prácticamente todo el interior peninsular y
+Baleares, incluso los 38-40 en gran parte de la vertiente
+atlántica, depresiones del nordeste y Cantábrico interior.
+
+Levante en Alborán y, con intervalos fuertes, en el Estrecho.
+Viento del nordeste en los litorales del noroeste y sudeste. En el
+resto vientos flojos, de norte en Canarias, del sureste y sur en
+horas centrales gran parte del interior peninsular y variables en
+el resto.
 
  
 ---
@@ -130,6 +145,6 @@ knitr::include_graphics(giffile)
 ```
 
 <div class="figure">
-<img src="example-gif.gif" alt="plot of chunk maps" width="100%" />
-<p class="caption">plot of chunk maps</p>
+<img src="example-gif.gif" alt="Example: Surface analysis map provided by AEMET" width="100%" />
+<p class="caption">Example: Surface analysis map provided by AEMET</p>
 </div>
