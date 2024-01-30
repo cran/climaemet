@@ -1,6 +1,6 @@
 Package: climaemet
 Title: Climate AEMET Tools
-Version: 1.2.0
+Version: 1.2.1
 Authors@R: c(
     person("Manuel", "Pizarro", role = c("aut", "cph"),
            comment = c(ORCID = "0000-0002-6981-0154")),
@@ -27,19 +27,19 @@ Suggests: climatol (>= 3.1.2), gganimate (>= 1.0.5), jpeg (>= 0.1.8),
 VignetteBuilder: knitr
 Config/Needs/website: mapSpain, classInt, terra, sf, gstat, geoR,
         tidyverse, tidyterra, scales, gifski, reactable, leaflet,
-        geofacet
+        geofacet, devtools
 Copyright: © AEMET. See file COPYRIGHTS
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 X-schema.org-applicationCategory: Meteorology
 X-schema.org-isPartOf: https://ropenspain.es/
 NeedsCompilation: no
-Packaged: 2023-08-30 07:34:38 UTC; diego
+Packaged: 2024-01-30 22:03:28 UTC; diego
 Author: Manuel Pizarro [aut, cph] (<https://orcid.org/0000-0002-6981-0154>),
   Diego Hernangómez [aut, cre] (<https://orcid.org/0000-0001-8457-4658>,
     rOpenSpain),
   Gema Fernández-Avilés [aut] (<https://orcid.org/0000-0001-5934-1916>)
 Maintainer: Diego Hernangómez <diego.hernangomezherrero@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-08-30 07:50:02 UTC
+Date/Publication: 2024-01-30 23:10:02 UTC

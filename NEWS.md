@@ -1,3 +1,9 @@
+# climaemet 1.2.1
+
+-   On `aemet_monthly_period(extract_metadata = TRUE)` honor the `start` and
+    `end` parameters.
+-   Update docs.
+
 # climaemet 1.2.0
 
 -   Now it is possible to extract metadata from each API call using the
