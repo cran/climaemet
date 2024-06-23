@@ -11,12 +11,12 @@ aemet_stations(verbose = FALSE, return_sf = FALSE)
 information between the client and server.}
 
 \item{return_sf}{Logical \code{TRUE} or \code{FALSE}.
-Should the function return an \code{sf} spatial object? If \code{FALSE}
-(the default value) it returns a tibble. Note that you need to
-have the \CRANpkg{sf} package installed.}
+Should the function return an \code{\link[sf:sf]{sf}} spatial object? If \code{FALSE}
+(the default value) it returns a \code{\link[tibble:tibble]{tibble}}. Note that
+you need to have the \CRANpkg{sf} package installed.}
 }
 \value{
-A \CRANpkg{tibble} or a \CRANpkg{sf} object
+A \code{\link[tibble:tibble]{tibble}} or a \CRANpkg{sf} object.
 }
 \description{
 Get AEMET stations.
@@ -26,7 +26,7 @@ The first result of the API call on each session is (temporarily) cached in
 the assigned \code{\link[=tempdir]{tempdir()}} for avoiding unneeded API calls.
 }
 \note{
-Code modified from project \url{https://github.com/SevillaR/aemet}
+Code modified from project \url{https://github.com/SevillaR/aemet}.
 }
 \section{API Key}{
 You need to set your API Key globally using \code{\link[=aemet_api_key]{aemet_api_key()}}.
@@ -46,8 +46,10 @@ identical(stations, stations2)
 }
 \seealso{
 Other aemet_api_data: 
+\code{\link{aemet_beaches}()},
 \code{\link{aemet_daily_clim}()},
 \code{\link{aemet_extremes_clim}()},
+\code{\link{aemet_forecast_beaches}()},
 \code{\link{aemet_forecast_daily}()},
 \code{\link{aemet_last_obs}()},
 \code{\link{aemet_monthly}},

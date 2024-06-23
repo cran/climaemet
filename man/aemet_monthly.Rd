@@ -12,7 +12,8 @@ aemet_monthly_clim(
   year = as.integer(format(Sys.Date(), "\%Y")),
   verbose = FALSE,
   return_sf = FALSE,
-  extract_metadata = FALSE
+  extract_metadata = FALSE,
+  progress = TRUE
 )
 
 aemet_monthly_period(
@@ -21,7 +22,8 @@ aemet_monthly_period(
   end = start,
   verbose = FALSE,
   return_sf = FALSE,
-  extract_metadata = FALSE
+  extract_metadata = FALSE,
+  progress = TRUE
 )
 
 aemet_monthly_period_all(
@@ -29,33 +31,37 @@ aemet_monthly_period_all(
   end = start,
   verbose = FALSE,
   return_sf = FALSE,
-  extract_metadata = FALSE
+  extract_metadata = FALSE,
+  progress = TRUE
 )
 }
 \arguments{
 \item{station}{Character string with station identifier code(s)
-(see \code{\link[=aemet_stations]{aemet_stations()}})}
+(see \code{\link[=aemet_stations]{aemet_stations()}}).}
 
-\item{year}{Numeric value as date (format: YYYY).}
+\item{year}{Numeric value as date (format: \code{YYYY}).}
 
 \item{verbose}{Logical \code{TRUE/FALSE}. Provides information about the flow of
 information between the client and server.}
 
 \item{return_sf}{Logical \code{TRUE} or \code{FALSE}.
-Should the function return an \code{sf} spatial object? If \code{FALSE}
-(the default value) it returns a tibble. Note that you need to
-have the \CRANpkg{sf} package installed.}
+Should the function return an \code{\link[sf:sf]{sf}} spatial object? If \code{FALSE}
+(the default value) it returns a \code{\link[tibble:tibble]{tibble}}. Note that
+you need to have the \CRANpkg{sf} package installed.}
 
 \item{extract_metadata}{Logical \code{TRUE/FALSE}. On \code{TRUE} the output is
-a \code{tibble} with the description of the fields. See also
+a \code{\link[tibble:tibble]{tibble}} with the description of the fields. See also
 \code{\link[=get_metadata_aemet]{get_metadata_aemet()}}.}
 
-\item{start}{Numeric value as start year (format: YYYY).}
+\item{progress}{Logical, display a \code{\link[cli:cli_progress_bar]{cli::cli_progress_bar()}} object. If
+\code{verbose = TRUE} won't be displayed.}
 
-\item{end}{Numeric value as end year (format: YYYY).}
+\item{start}{Numeric value as start year (format: \code{YYYY}).}
+
+\item{end}{Numeric value as end year (format: \code{YYYY}).}
 }
 \value{
-A \CRANpkg{tibble} or a \CRANpkg{sf} object
+A \code{\link[tibble:tibble]{tibble}} or a \CRANpkg{sf} object.
 }
 \description{
 Get monthly/annual climatology values for a station or all the stations.
@@ -76,8 +82,10 @@ glimpse(obs)
 }
 \seealso{
 Other aemet_api_data: 
+\code{\link{aemet_beaches}()},
 \code{\link{aemet_daily_clim}()},
 \code{\link{aemet_extremes_clim}()},
+\code{\link{aemet_forecast_beaches}()},
 \code{\link{aemet_forecast_daily}()},
 \code{\link{aemet_last_obs}()},
 \code{\link{aemet_normal}},

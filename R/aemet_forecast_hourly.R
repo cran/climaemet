@@ -7,31 +7,36 @@
 #'
 #' @param x A vector of municipality codes to extract. For convenience,
 #'   \CRANpkg{climaemet} provides this data on the dataset [aemet_munic]
-#'   (see `municipio` field) as of January 2020.
+#'   (see `municipio` field) as of January 2024.
 #' @param extract_metadata Logical `TRUE/FALSE`. On `TRUE` the output is
-#'   a `tibble` with the description of the fields. See also
+#'   a [`tibble`][tibble::tibble()] with the description of the fields. See also
 #'   [get_metadata_aemet()].
 #' @inheritParams get_data_aemet
+#' @inheritParams aemet_last_obs
 #'
 #' @inheritSection aemet_daily_clim API Key
 #'
-#' @return A nested \CRANpkg{tibble}. Forecasted values can be extracted with
-#'   [aemet_forecast_tidy()]. See also **Details**
+#' @return A nested [`tibble`][tibble::tibble()]. Forecasted values can be
+#' extracted with [aemet_forecast_tidy()]. See also **Details**.
 #'
 #' @export
 #' @rdname aemet_forecast
-#' @seealso [aemet_munic] for municipality codes.
+#' @seealso
+#' [aemet_munic] for municipality codes and \CRANpkg{mapSpain} package for
+#' working with `sf` objects of municipalities (see
+#' [mapSpain::esp_get_munic()] and **Examples**).
+#'
 #'
 #' @details
 #'
 #' Forecasts format provided by the AEMET API have a complex structure.
-#' Although \CRANpkg{climaemet} returns a `tibble`, each forecasted value is
-#' provided as a nested `tibble`. [aemet_forecast_tidy()] helper function can
-#' unnest these values an provide a single unnested `tibble` for the requested
-#' variable.
+#' Although \CRANpkg{climaemet} returns a [`tibble`][tibble::tibble()], each
+#' forecasted value is provided as a nested [`tibble`][tibble::tibble()].
+#' [aemet_forecast_tidy()] helper function can unnest these values an provide a
+#' single unnested [`tibble`][tibble::tibble()] for the requested variable.
 #'
-#' If `extract_metadata = TRUE` a simple `tibble` describing the value of
-#' each field of the forecast is returned.
+#' If `extract_metadata = TRUE` a simple [`tibble`][tibble::tibble()] describing
+#' the value of each field of the forecast is returned.
 #'
 #' @examplesIf aemet_detect_api_key()
 #'
@@ -39,10 +44,7 @@
 #' data("aemet_munic")
 #' library(dplyr)
 #' munis <- aemet_munic %>%
-#'   filter(municipio_nombre %in% c(
-#'     "Santiago de Compostela",
-#'     "Lugo"
-#'   )) %>%
+#'   filter(municipio_nombre %in% c("Santiago de Compostela", "Lugo")) %>%
 #'   pull(municipio)
 #'
 #' daily <- aemet_forecast_daily(munis)
@@ -99,58 +101,135 @@
 #'       format(daily_temp_end$elaborado[1], usetz = TRUE)
 #'     )
 #'   )
+#'
+#' # Spatial with mapSpain
+#' library(mapSpain)
+#' library(sf)
+#'
+#' lugo_sf <- esp_get_munic(munic = "Lugo") %>%
+#'   select(LAU_CODE)
+#'
+#' daily_temp_end_lugo_sf <- daily_temp_end %>%
+#'   filter(nombre == "Lugo" & name == "temperatura_maxima") %>%
+#'   # Join by LAU_CODE
+#'   left_join(lugo_sf, by = c("municipio" = "LAU_CODE")) %>%
+#'   st_as_sf()
+#'
+#' ggplot(daily_temp_end_lugo_sf) +
+#'   geom_sf(aes(fill = value)) +
+#'   facet_wrap(~fecha) +
+#'   scale_fill_gradientn(
+#'     colors = c("blue", "red"),
+#'     guide = guide_legend()
+#'   ) +
+#'   labs(
+#'     main = "Forecast: 7-day max temperature",
+#'     subtitle = "Lugo, ES"
+#'   )
 aemet_forecast_hourly <- function(x, verbose = FALSE,
-                                  extract_metadata = FALSE) {
-  if (all(verbose, extract_metadata, length(x) > 1)) {
-    x <- x[1]
-    message("Extracting metadata for ", x, " only")
-  }
-  single <- lapply(x, function(x) {
-    res <- try(
-      aemet_forecast_hourly_single(x,
-        verbose = verbose,
-        extract_metadata = extract_metadata
-      ),
-      silent = TRUE
-    )
-    if (inherits(res, "try-error")) {
-      message(
-        "\nAEMET API call for '", x, "' returned an error\n",
-        "Return NULL for this query"
-      )
-      return(NULL)
-    }
-    return(res)
-  })
-  bind <- dplyr::bind_rows(single)
+                                  extract_metadata = FALSE, progress = TRUE) {
+  # 1. API call -----
+
+  ## Metadata ----
   if (extract_metadata) {
-    return(bind)
-  }
-  # Preserve format
-  bind$id <- sprintf("%05d", as.numeric(bind$id))
-  bind <- aemet_hlp_guess(bind, preserve = c("id", "municipio"))
-  return(bind)
-}
+    mun <- climaemet::aemet_munic
+    x <- mun$municipio[1]
 
-aemet_forecast_hourly_single <- function(x, verbose = FALSE,
-                                         extract_metadata = FALSE) {
-  if (is.numeric(x)) x <- sprintf("%05d", x)
-
-  if (isTRUE(extract_metadata)) {
-    meta <-
-      get_metadata_aemet(
-        apidest = paste0("/api/prediccion/especifica/municipio/horaria/", x),
-        verbose = verbose
-      )
+    meta <- get_metadata_aemet(
+      apidest = paste0("/api/prediccion/especifica/municipio/horaria/", x),
+      verbose = verbose
+    )
     meta <- aemet_hlp_meta_forecast(meta)
     return(meta)
   }
 
-  pred <-
-    get_data_aemet(
-      apidest = paste0("/api/prediccion/especifica/municipio/horaria/", x),
-      verbose = verbose
+  ## Normal call ----
+
+  # Make calls on loop for progress bar
+  final_result <- list() # Store results
+
+  # Deactive progressbar if verbose
+  if (verbose) progress <- FALSE
+  if (!cli::is_dynamic_tty()) progress <- FALSE
+
+  # nolint start
+  # nocov start
+  if (progress) {
+    opts <- options()
+    options(
+      cli.progress_bar_style = "fillsquares",
+      cli.progress_show_after = 3,
+      cli.spinner = "clock"
     )
+
+    cli::cli_progress_bar(
+      format = paste0(
+        "{cli::pb_spin} AEMET API ({cli::pb_current}/{cli::pb_total}) ",
+        "| {cli::pb_bar} {cli::pb_percent}  ",
+        "| ETA:{cli::pb_eta} [{cli::pb_elapsed}]"
+      ),
+      total = length(x), clear = FALSE
+    )
+  }
+
+  # nocov end
+  # nolint end
+
+
+  for (id in x) {
+    if (progress) cli::cli_progress_update() # nocov
+    df <- try(aemet_forecast_hourly_single(id, verbose = verbose),
+      silent = TRUE
+    )
+    if (inherits(df, "try-error")) {
+      message(
+        "\nAEMET API call for '", id, "' returned an error\n",
+        "Return NULL for this query"
+      )
+
+      df <- NULL
+    }
+
+    final_result <- c(final_result, list(df))
+  }
+
+  # nolint start
+  # nocov start
+  if (progress) {
+    cli::cli_progress_done()
+    options(
+      cli.progress_bar_style = opts$cli.progress_bar_style,
+      cli.progress_show_after = opts$cli.progress_show_after,
+      cli.spinner = opts$cli.spinner
+    )
+  }
+  # nocov end
+  # nolint end
+
+
+
+  # Final tweaks
+  final_result <- dplyr::bind_rows(final_result)
+  # Preserve format
+  final_result$id <- sprintf("%05d", as.numeric(final_result$id))
+  final_result <- dplyr::as_tibble(final_result)
+  final_result <- dplyr::distinct(final_result)
+  final_result <- aemet_hlp_guess(final_result,
+    preserve = c("id", "municipio")
+  )
+
+  final_result
+}
+
+aemet_forecast_hourly_single <- function(x, verbose = FALSE) {
+  if (is.numeric(x)) x <- sprintf("%05d", x)
+
+  pred <- get_data_aemet(
+    apidest = paste0(
+      "/api/prediccion/especifica/municipio/horaria/", x
+    ),
+    verbose = verbose
+  )
 
 
   pred$elaborado <- as.POSIXct(gsub("T", " ", pred$elaborado),

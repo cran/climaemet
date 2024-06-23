@@ -9,10 +9,11 @@ aemet_api_key(apikey, overwrite = FALSE, install = FALSE)
 \arguments{
 \item{apikey}{The API key provided to you from the AEMET formatted in quotes.
 A key can be acquired at
-\url{https://opendata.aemet.es/centrodedescargas/inicio}.}
+\url{https://opendata.aemet.es/centrodedescargas/inicio}. You can install
+several API Keys as a vector of characters, see \strong{Details}.}
 
 \item{overwrite}{If this is set to \code{TRUE}, it will overwrite an existing
-AEMET_API_KEY that you already have in local machine.}
+\code{AEMET_API_KEY} that you already have in local machine.}
 
 \item{install}{if \code{TRUE}, will install the key in your local machine for
 use in future sessions.  Defaults to \code{FALSE.}}
@@ -22,19 +23,24 @@ None
 }
 \description{
 This function will store your AEMET API key on your local machine so it can
-be called securely without being stored in your code. After you have
-installed your key, it can be called any time by typing
-\code{Sys.getenv("AEMET_API_KEY")} and can be
-used in package functions by simply typing \code{AEMET_API_KEY}.
+be called securely without being stored in your code.
 
 Alternatively, you can install the API Key manually:
 \itemize{
 \item Run \code{Sys.setenv(AEMET_API_KEY = "Your_Key")}. You would need to run this
 command on each session (Similar to \code{install = FALSE}).
-\item Write this line on your .Renviron file: \code{AEMET_API_KEY = "Your_Key"} (
-same behavior than \code{install = TRUE}). This would store your API key
+\item Write this line on your .Renviron file: \code{AEMET_API_KEY = "Your_Key"}
+(same behavior than \code{install = TRUE}). This would store your API key
 permanently.
 }
+}
+\details{
+You can pass several \code{apikey} values as a vector \code{c(api1, api2)}, in this
+case several \code{AEMET_API_KEY} values would be generated. In each subsequent
+api call \CRANpkg{climaemet} would randomly choose one of the provided
+API keys.
+
+This is useful when performing batch queries to avoid API throttling.
 }
 \note{
 To locate your API Key on your local machine, run

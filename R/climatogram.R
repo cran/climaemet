@@ -1,3 +1,5 @@
+# nocov start
+
 #' Walter & Lieth climatic diagram from normal climatology values
 #'
 #' @description
@@ -8,21 +10,21 @@
 #' @family aemet_plots
 #' @family climatogram
 #'
-#' @param labels Character string as month labels for the X axis: "en"
-#' (english), "es" (spanish), "fr" (french), etc.
+#' @param labels Character string as month labels for the X axis: `"en"`
+#' (english), `"es"` (spanish), `"fr"` (french), etc.
 #'
 #' @param ggplot2 `TRUE/FALSE`. On `TRUE` the function uses
 #'   [ggclimat_walter_lieth()], if `FALSE` uses [`climatol::diagwl()`].
 #'
 #' @param ... Further arguments to
 #'   [`climatol::diagwl()`] or [ggclimat_walter_lieth()], depending on the
-#'   value of `ggplot2`
+#'   value of \CRANpkg{ggplot2}.
 #'
 #' @inheritParams climatestripes_station
 #'
 #' @inheritSection aemet_daily_clim API Key
-
-#' @note The code is based on code from the CRAN package \CRANpkg{climatol}
+#' @note
+#' The code is based on code from the CRAN package \CRANpkg{climatol}.
 #'
 #' @references
 #' - Walter, H. K., Harnickell, E., Lieth, F. H. H., & Rehder, H. (1967).
@@ -114,7 +116,7 @@ climatogram_normal <- function(station, labels = "en", verbose = FALSE,
 #' @inheritParams climatogram_normal
 #' @inheritParams aemet_monthly_period
 #'
-#' @note The code is based on code from the CRAN package \CRANpkg{climatol}
+#' @note The code is based on code from the CRAN package \CRANpkg{climatol}.
 #'
 #' @references
 #' - Walter, H. K., Harnickell, E., Lieth, F. H. H., & Rehder, H. (1967).
@@ -137,8 +139,6 @@ climatogram_normal <- function(station, labels = "en", verbose = FALSE,
 climatogram_period <- function(station = NULL, start = 1990, end = 2020,
                                labels = "en", verbose = FALSE, ggplot2 = TRUE,
                                ...) {
-  message("Data download may take a few minutes ... please wait \n")
-
   data_raw <- aemet_monthly_period(station,
     start = start,
     end = end,
@@ -157,7 +157,7 @@ climatogram_period <- function(station = NULL, start = 1990, end = 2020,
     gsub("\\s*\\([^\\)]+\\)", "", as.character(data$ta_min))
   )
 
-  data$fecha <- as.Date(paste0(data$fecha, "-01"))
+  data$fecha <- as.Date(paste0(data$fecha, "-01"), format = "%Y-%m-%d")
   data$mes <- as.integer(format(data$fecha, "%m"))
   data <- data[names(data) != "fecha"]
   data <- tibble::as_tibble(aggregate(. ~ mes, data, mean))
@@ -198,13 +198,10 @@ climatogram_period <- function(station = NULL, start = 1990, end = 2020,
       stop("\n\npackage climatol required, please install it first")
     }
 
-    climatol::diagwl(
-      data,
+    climatol::diagwl(data,
       est = stations$nombre,
-      alt = stations$altitud,
-      per = paste(start, "-", end),
-      mlab = labels,
-      ...
+      alt = stations$altitud, per = paste(start, "-", end),
+      mlab = labels, cols = NULL, ...
     )
   }
 }
@@ -212,7 +209,7 @@ climatogram_period <- function(station = NULL, start = 1990, end = 2020,
 
 
 
-#' Walter and Lieth climatic diagram on `ggplot2`
+#' Walter and Lieth climatic diagram on \CRANpkg{ggplot2}
 #'
 #' @description
 #' Plot of a Walter and Lieth climatic diagram of a station. This function is
@@ -227,15 +224,15 @@ climatogram_period <- function(station = NULL, start = 1990, end = 2020,
 #'
 #' @param dat	Monthly climatic data for which the diagram will be plotted.
 #'
-#' @param est	Name of the climatological station
+#' @param est	Name of the climatological station.
 #'
-#' @param alt Altitude of the climatological station
+#' @param alt Altitude of the climatological station.
 #'
-#' @param per	Period on which the averages have been computed
-#' @param mlab Month labels for the X axis. Use 2-digit language code ("en",
-#'    "es", etc.). See [`readr::locale()`] for info.
-#' @param pcol	Color pen for precipitation.
-#' @param tcol Color pen for temperature.
+#' @param per	Period on which the averages have been computed.
+#' @param mlab Month labels for the X axis. Use 2-digit language code (`"en"`,
+#'    `"es"`, etc.). See [`readr::locale()`] for info.
+#' @param pcol	Color for precipitation.
+#' @param tcol Color for temperature.
 #' @param pfcol	Fill color for probable frosts.
 #' @param sfcol	Fill color for sure frosts.
 #' @param shem Set to `TRUE` for southern hemisphere stations.
@@ -777,3 +774,5 @@ ggclimat_walter_lieth <- function(dat, est = "", alt = NA, per = NA,
 
   return(wandlplot)
 }
+
+# nocov end

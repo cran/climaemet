@@ -14,16 +14,16 @@ ggstripes(
 )
 }
 \arguments{
-\item{data}{a data.frame with date(year) and temperature(temp) variables.}
+\item{data}{a data.frame with date(\code{year}) and temperature(\code{temp}) variables.}
 
 \item{plot_type}{plot type (with labels, background, stripes with line
-trend and animation). Accepted values are "background", "stripes",
-"trend" or "animation".}
+trend and animation). Accepted values are \code{"background"}, \code{"stripes"},
+\code{"trend"} or \code{"animation"}.}
 
 \item{plot_title}{character string to be used for the graph title.}
 
 \item{n_temp}{Numeric value as the number of colors of the palette.
-(default 11).}
+(default \code{11}).}
 
 \item{col_pal}{Character string indicating the name of the
 \code{\link[=hcl.pals]{hcl.pals()}} color palette to be used for plotting.}
@@ -34,10 +34,10 @@ trend and animation). Accepted values are "background", "stripes",
 A \CRANpkg{ggplot2} object
 }
 \description{
-Plot different "climate stripes" or "warming stripes" using \strong{ggplot2}.
-This graphics are visual representations of the change in temperature as
-measured in each location over the past 70-100+ years. Each stripe
-represents the temperature in that station averaged over a year.
+Plot different "climate stripes" or "warming stripes" using
+\CRANpkg{ggplot2}. This graphics are visual representations of the change
+in temperature as measured in each location over the past 70-100+ years. Each
+stripe represents the temperature in that station averaged over a year.
 }
 \note{
 "Warming stripes" charts are a conceptual idea of Professor Ed Hawkins

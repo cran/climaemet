@@ -13,22 +13,27 @@ resource_files:
 
 
 
+**climaemet** provides several functions for accessing a selection of endpoints
+of the [AEMET API tool](https://opendata.aemet.es/dist/index.html?). However,
+this package does not cover in full all the capabilities of the API.
 
-**climaemet** provides several functions for accessing a selection of endpoints of the [AEMET API tool](https://opendata.aemet.es/dist/index.html?). However, this package does not cover in full all the capabilities of the API.
+For that reason, we provide the `get_data_aemet()` function, that allows to
+access any API endpoint freely. The drawback is that the user would need to
+handle the results by him/herself.
 
-For that reason, we provide the `get_data_aemet()` function, that allows to access any API endpoint freely. The drawback is that the user would need to handle the results by him/herself.
 
-
-```r
+``` r
 library(climaemet)
 ```
 
 ## Example: Normalized text
 
-Some API endpoints, as **predicciones-normalizadas-texto**, provides the results as plain text on natural language. These results are not parsed by **climaemet**, but can be retrieved as this:
+Some API endpoints, as `predicciones-normalizadas-texto`, provides the results
+as plain text on natural language. These results are not parsed by
+**climaemet**, but can be retrieved as this:
 
 
-```r
+``` r
 # endpoint, today forecast
 
 today <- "/api/prediccion/nacional/hoy"
@@ -45,14 +50,17 @@ knitr::kable(get_metadata_aemet(today))
 
 
 
-```r
+``` r
 
 # Data
 pred_today <- get_data_aemet(today)
+#> 
+#> Results are MIME type: text/plain
+#> Returning data as string
 ```
 
 
-```r
+``` r
 # Produce a result
 
 clean <- gsub("\r", "\n", pred_today, fixed = TRUE)
@@ -65,51 +73,66 @@ cat(paste("---\n\n", clean, "\n---"))
 
  AGENCIA ESTATAL DE METEOROLOGÍA
 PREDICCIÓN GENERAL PARA ESPAÑA 
-DÍA 18 DE ENERO DE 2024 A LAS 08:46 HORA OFICIAL
-PREDICCIÓN VÁLIDA PARA EL JUEVES 18
+DÍA 19 DE JUNIO DE 2024 A LAS 15:32 HORA OFICIAL
+PREDICCIÓN VÁLIDA PARA EL MIÉRCOLES 19
 
 A.- FENÓMENOS SIGNIFICATIVOS
-Intervalos de viento fuerte en zonas de la mitad oriental y tercio
-noroeste de la Península y en Baleares. En Canarias, probabilidad
-de precipitaciones localmente fuertes en las islas occidentales.
+Probabilidad de chubascos y tormentas localmente fuertes en
+litorales de Galicia y Asturias a primeras horas, y en los
+entornos cantábrico y pirenaico occidentales, sin descartarlos en
+Extremadura y Andalucía occidental, por la tarde. Intervalos de
+viento fuerte en litorales de Alborán y zonas expuestas de
+Canarias. Rissagas en Menorca.
 
 B.- PREDICCIÓN
-Cielos nubosos o cubiertos y con precipitaciones en el norte de
-Galicia, área Cantábrica y la vertiente atlántica peninsular,
-más débiles y dispersas al principio, y que se intensificarán
-por la tarde-noche. Intervalos nubosos en el resto de la
-Península y Baleares, con posibilidad de algunas precipitaciones
-débiles, que no llegarán al litoral mediterráneo ni a Baleares.
-En Canarias, intervalos nubosos, con posibilidad de alguna
-precipitaciones débiles, que se intensificarán según avance el
-día en el extremo occidental con probabilidad de que sean
-localmente fuertes en las vertientes norte y oeste de La Palma y
-El Hierro.
+Una DANA se acercará al oeste Peninsular propiciando una
+situación de inestabilidad con cielos nubosos o cubiertos en
+Galicia, entorno cantábrico y suroeste peninsular; también en el
+resto de la vertiente atlántica, alto Ebro y área pirenaica en
+la segunda mitad del día, predominando los cielos poco nubosos o
+con intervalos de nubes bajas en la primera. Se prevén
+precipitaciones ocasionalmente acompañadas de tormenta desde
+primera horas en el entorno cantábrico y norte de Galicia, sin
+descartarlas localmente fuertes en áreas de litoral de Asturias y
+Lugo, que por la tarde se extenderán al resto de la mitad oeste
+peninsular, así como al entorno del alto Ebro, norte de la
+Ibérica, Cantábrico oriental y Pirineo y aledaños al sur. Se
+prevén más intensas en los entornos cantábrico y pirenaico
+occidentales, con probabilidad de llegar a localmente fuertes, y
+sin descartarlo en áreas de Extremadura y Andalucía occidental.
+En el resto de la Península y Baleares se darán intervalos de
+nubes medias y altas yendo a más a lo largo del día y dejando
+probables precipitaciones con tormenta en áreas del tercio este,
+sin descartarlas en Baleares. Intervalos de nubes en los nortes y
+este del archipiélago canario, sin descartar precipitaciones
+débiles dispersas en las islas montañosas, y poco nuboso en el
+resto.
 
-Cota de nieve en la Península: 1800/2000 m en el extremo norte,
-descendiendo a 1000/1300 m; unos 1800/2000 m en la zona centro; y
-unos 2000/2300 m en el sur.
+Se prevé la presencia de calima en Baleares y rissagas en
+Menorca.
 
-Las temperaturas descenderán en el tercio norte peninsular, y con
-pocos cambios en el resto. Heladas en las montañas del extremo
-norte, más intensas en Pirineos.
+Las temperaturas descenderán de forma prácticamente
+generalizada, acusadamente en interiores de la mitad oriental
+peninsular, y con algunos aumentos en litorales del Levante,
+fachada atlántica gallega, meseta Norte y norte de Baleares.
 
-Vientos del suroeste de madrugada en la Península y Baleares, con
-intervalos fuertes en zonas de la mitad oriental y tercio noroeste
-de la Península y en Baleares. A lo largo del día tenderán a
-aflojar, y girando al noreste en Galicia y Cantábrico. Flojos o
-moderados de dirección variable en el extremo noreste peninsular
-y Canarias.
+Predominarán los vientos de componente norte en Galicia y
+vertiente cantábrica, de sur y este en la mitad norte del área
+mediterránea y nordeste peninsular, y de sur y oeste en el resto.
+Se prevén intervalos de fuerte en litorales de Alborán, que no
+se descartan en los del oeste de Galicia. Alisio en Canarias, con
+intervalos de fuerte en los canales entre islas.
 
  
 ---
 
 ## Example: Maps
 
-AEMET also provides map data, usually on `image/gif` format. One way to get this kind of data is as follows:
+AEMET also provides map data, usually on `image/gif` format. One way to get this
+kind of data is as follows:
 
 
-```r
+``` r
 # Endpoint of a map
 a_map <- "/api/mapasygraficos/analisis"
 
@@ -125,9 +148,15 @@ knitr::kable(get_metadata_aemet(a_map))
 
 
 
-```r
+``` r
 
 the_map <- get_data_aemet(a_map)
+#> 
+#> Results are MIME type: image/gif
+#> Returning raw data
+```
+
+``` r
 
 
 # Write as gif and include it

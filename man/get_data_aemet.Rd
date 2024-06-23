@@ -5,7 +5,7 @@
 \alias{get_metadata_aemet}
 \title{Client tool for AEMET API}
 \source{
-\url{https://opendata.aemet.es/dist/index.html}
+\url{https://opendata.aemet.es/dist/index.html}.
 }
 \usage{
 get_data_aemet(apidest, verbose = FALSE)
@@ -20,11 +20,12 @@ get_metadata_aemet(apidest, verbose = FALSE)
 information between the client and server.}
 }
 \value{
-A tibble (if possible) or the results of the query as provided by
-\code{\link[httr:content]{httr::content()}}.
+A \code{\link[tibble:tibble]{tibble}} (if possible) or the results of the query as
+provided by \code{\link[httr2:resp_body_raw]{httr2::resp_body_raw()}} or \code{\link[httr2:resp_body_raw]{httr2::resp_body_string()}}.
 }
 \description{
-Client tool to get data and metadata from AEMET and convert json to tibble.
+Client tool to get data and metadata from AEMET and convert json to
+\code{\link[tibble:tibble]{tibble}}.
 }
 \examples{
 \dontshow{if (aemet_detect_api_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

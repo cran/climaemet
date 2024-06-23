@@ -1,3 +1,16 @@
+# climaemet 1.3.0
+
+-   Migrate from **httr** to **httr2** (#50).
+-   New functions for beaches: `aemet_forecast_beaches()` and `aemet_beaches()`
+    (#54).
+-   Use progress bars in downloads thanks to **cli**. New argument
+    `progress = TRUE` in most functions.
+-   It is possible to use several API keys to avoid API throttling, see
+    `?climaemet::aemet_api_key` (#53).
+-   New helper function `dms2decdegrees_2()`.
+-   Update `aemet_munic` with January 2024 data.
+-   New package in 'Suggests': **mapSpain**.
+
 # climaemet 1.2.1
 
 -   On `aemet_monthly_period(extract_metadata = TRUE)` honor the `start` and
@@ -33,18 +46,18 @@
 
 # climaemet 1.0.2
 
--   Fix docs as per CRAN request
+-   Fix docs as per **CRAN** request
 
 # climaemet 1.0.1
 
 -   Add new citation.
 -   Adapt some examples.
--   Remove `lubridate` dependency.
+-   Remove **lubridate** dependency.
 -   No more messages when loading the library.
 
 # climaemet 1.0.0
 
--   package added to rOpenSpain project: repo transferred to
+-   package added to **rOpenSpain** project: repo transferred to
     <https://github.com/rOpenSpain/climaemet>
 
 ## Breaking changes:
@@ -54,11 +67,11 @@
 
 ## Major changes
 
--   Results are provided on `tibble/tidyverse` format.
+-   Results are provided on `tibble` format.
 -   Results are parsed to the correct formats (numbers and dates when possible).
 -   Spatial support: New option `return_sf` would return `sf` objects instead of
-    tibbles. `sf (>= 0.9)` required, listed on 'Suggests' so it is not strictly
-    required.
+    `tibble` objects. **sf**`(>= 0.9)` required, listed on 'Suggests' so it is
+    not strictly required.
 -   API functions gain new parameters, as `verbose`, to check results.
 
 ## Enhancements
@@ -75,7 +88,7 @@
     with options `ggplot2 = FALSE`.
 -   Plot functions gains new parameters (`verbose` and `...`). Now it is
     possible to pass colors to the plotting functions.
--   New example datasets: `climaemet_9434_climatogram`, `climaemet_9434_temp`,
+-   New example data sets: `climaemet_9434_climatogram`, `climaemet_9434_temp`,
     `climaemet_9434_wind`.
 
 ## Internal changes
@@ -99,4 +112,4 @@
 
 # climaemet 0.1.0
 
--   Firts release July 2020.
+-   First release July 2020.

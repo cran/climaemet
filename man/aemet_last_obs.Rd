@@ -8,7 +8,8 @@ aemet_last_obs(
   station = "all",
   verbose = FALSE,
   return_sf = FALSE,
-  extract_metadata = FALSE
+  extract_metadata = FALSE,
+  progress = TRUE
 )
 }
 \arguments{
@@ -19,16 +20,19 @@ aemet_last_obs(
 information between the client and server.}
 
 \item{return_sf}{Logical \code{TRUE} or \code{FALSE}.
-Should the function return an \code{sf} spatial object? If \code{FALSE}
-(the default value) it returns a tibble. Note that you need to
-have the \CRANpkg{sf} package installed.}
+Should the function return an \code{\link[sf:sf]{sf}} spatial object? If \code{FALSE}
+(the default value) it returns a \code{\link[tibble:tibble]{tibble}}. Note that
+you need to have the \CRANpkg{sf} package installed.}
 
 \item{extract_metadata}{Logical \code{TRUE/FALSE}. On \code{TRUE} the output is
-a \code{tibble} with the description of the fields. See also
+a \code{\link[tibble:tibble]{tibble}} with the description of the fields. See also
 \code{\link[=get_metadata_aemet]{get_metadata_aemet()}}.}
+
+\item{progress}{Logical, display a \code{\link[cli:cli_progress_bar]{cli::cli_progress_bar()}} object. If
+\code{verbose = TRUE} won't be displayed.}
 }
 \value{
-A \CRANpkg{tibble} or a \CRANpkg{sf} object
+A \code{\link[tibble:tibble]{tibble}} or a \CRANpkg{sf} object
 }
 \description{
 Get last observation values for a station.
@@ -47,8 +51,10 @@ glimpse(obs)
 }
 \seealso{
 Other aemet_api_data: 
+\code{\link{aemet_beaches}()},
 \code{\link{aemet_daily_clim}()},
 \code{\link{aemet_extremes_clim}()},
+\code{\link{aemet_forecast_beaches}()},
 \code{\link{aemet_forecast_daily}()},
 \code{\link{aemet_monthly}},
 \code{\link{aemet_normal}},
