@@ -153,10 +153,13 @@ working with \code{sf} objects of municipalities (see
 \code{\link[mapSpain:esp_get_munic]{mapSpain::esp_get_munic()}} and \strong{Examples}).
 
 Other aemet_api_data: 
+\code{\link{aemet_alert_zones}()},
+\code{\link{aemet_alerts}()},
 \code{\link{aemet_beaches}()},
 \code{\link{aemet_daily_clim}()},
 \code{\link{aemet_extremes_clim}()},
 \code{\link{aemet_forecast_beaches}()},
+\code{\link{aemet_forecast_fires}()},
 \code{\link{aemet_last_obs}()},
 \code{\link{aemet_monthly}},
 \code{\link{aemet_normal}},
@@ -164,6 +167,7 @@ Other aemet_api_data:
 
 Other forecasts: 
 \code{\link{aemet_forecast_beaches}()},
+\code{\link{aemet_forecast_fires}()},
 \code{\link{aemet_forecast_tidy}()}
 }
 \concept{aemet_api_data}

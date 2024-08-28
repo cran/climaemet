@@ -73,55 +73,51 @@ cat(paste("---\n\n", clean, "\n---"))
 
  AGENCIA ESTATAL DE METEOROLOGÍA
 PREDICCIÓN GENERAL PARA ESPAÑA 
-DÍA 19 DE JUNIO DE 2024 A LAS 15:32 HORA OFICIAL
-PREDICCIÓN VÁLIDA PARA EL MIÉRCOLES 19
+DÍA 28 DE AGOSTO DE 2024 A LAS 08:21 HORA OFICIAL
+PREDICCIÓN VÁLIDA PARA EL MIÉRCOLES 28
 
 A.- FENÓMENOS SIGNIFICATIVOS
-Probabilidad de chubascos y tormentas localmente fuertes en
-litorales de Galicia y Asturias a primeras horas, y en los
-entornos cantábrico y pirenaico occidentales, sin descartarlos en
-Extremadura y Andalucía occidental, por la tarde. Intervalos de
-viento fuerte en litorales de Alborán y zonas expuestas de
-Canarias. Rissagas en Menorca.
+Temperaturas elevadas en zonas de la meseta Sur, depresiones del
+nordeste y valle del Guadalquivir. Tormentas localmente fuertes en
+la montaña turolense.
 
 B.- PREDICCIÓN
-Una DANA se acercará al oeste Peninsular propiciando una
-situación de inestabilidad con cielos nubosos o cubiertos en
-Galicia, entorno cantábrico y suroeste peninsular; también en el
-resto de la vertiente atlántica, alto Ebro y área pirenaica en
-la segunda mitad del día, predominando los cielos poco nubosos o
-con intervalos de nubes bajas en la primera. Se prevén
-precipitaciones ocasionalmente acompañadas de tormenta desde
-primera horas en el entorno cantábrico y norte de Galicia, sin
-descartarlas localmente fuertes en áreas de litoral de Asturias y
-Lugo, que por la tarde se extenderán al resto de la mitad oeste
-peninsular, así como al entorno del alto Ebro, norte de la
-Ibérica, Cantábrico oriental y Pirineo y aledaños al sur. Se
-prevén más intensas en los entornos cantábrico y pirenaico
-occidentales, con probabilidad de llegar a localmente fuertes, y
-sin descartarlo en áreas de Extremadura y Andalucía occidental.
-En el resto de la Península y Baleares se darán intervalos de
-nubes medias y altas yendo a más a lo largo del día y dejando
-probables precipitaciones con tormenta en áreas del tercio este,
-sin descartarlas en Baleares. Intervalos de nubes en los nortes y
-este del archipiélago canario, sin descartar precipitaciones
-débiles dispersas en las islas montañosas, y poco nuboso en el
-resto.
+Un frente atlántico se aproximará al noroeste peninsular,
+dejando cielos nubosos en Galicia y Cantábrico occidental, sin
+descartar precipitaciones débiles, más probables e intensas en
+el norte de la comunidad gallega. También se prevé nubosidad
+baja matinal en zonas del área mediterránea y el Estrecho. En el
+resto de la Península y Baleares empezará poco nuboso,
+aumentando a nubes medias y altas por el oeste y el sur. Por la
+tarde se formarán nubes de evolución en el centro e interiores
+del tercio oriental, sin descartar chubascos o tormentas aislados,
+más probables e intensos en el sistema Ibérico y Pirineo
+oriental, esperándose localmente fuertes en la Ibérica de
+Teruel. En Canarias se esperan cielos nubosos desplazándose de
+oeste a este, predominantemente de nubes medias y altas, sin
+descartar chubascos aislados en las islas montañosas.
 
-Se prevé la presencia de calima en Baleares y rissagas en
-Menorca.
+Llegará calima por el tercio sur de la Península y Alborán, sin
+descartar que se extienda con menor intensidad por el resto de la
+mitad sur. Probables nieblas matinales en el extremo norte, zonas
+del Mediterráneo y el Estrecho.
 
-Las temperaturas descenderán de forma prácticamente
-generalizada, acusadamente en interiores de la mitad oriental
-peninsular, y con algunos aumentos en litorales del Levante,
-fachada atlántica gallega, meseta Norte y norte de Baleares.
+Las temperaturas máximas descenderán en el Cantábrico y oeste
+de Andalucía y aumentarán en el oeste de Galicia, este de
+Andalucía y zonas del centro y nordeste. Se superarán los 36
+grados en depresiones de la vertiente atlántica sur y zonas del
+medio Ebro, incluso los 38 en puntos del Guadalquivir, Guadiana y
+Tajo. Las mínimas en ascenso en el nordeste y centro norte y en
+descenso en interiores del oeste.
 
-Predominarán los vientos de componente norte en Galicia y
-vertiente cantábrica, de sur y este en la mitad norte del área
-mediterránea y nordeste peninsular, y de sur y oeste en el resto.
-Se prevén intervalos de fuerte en litorales de Alborán, que no
-se descartan en los del oeste de Galicia. Alisio en Canarias, con
-intervalos de fuerte en los canales entre islas.
+Soplará alisio moderado en Canarias con algunas rachas o
+intervalos fuertes en zonas expuestas. Componente este en el área
+mediterráneas y tercio oriental, con intervalos de fuerte en el
+Estrecho y litoral almeriense. Tenderá a componentes norte y este
+en litorales gallegos, con intervalos de fuerte en Rías Baixas.
+En el resto de zonas los vientos serán variables, flojos en
+general y más intensos en litorales, tendiendo a sudoeste en el
+cuadrante sudoeste.
 
  
 ---
@@ -154,9 +150,6 @@ the_map <- get_data_aemet(a_map)
 #> 
 #> Results are MIME type: image/gif
 #> Returning raw data
-```
-
-``` r
 
 
 # Write as gif and include it

@@ -1,6 +1,6 @@
 Package: climaemet
 Title: Climate AEMET Tools
-Version: 1.3.0
+Version: 1.4.0
 Authors@R: c(
     person("Manuel", "Pizarro", role = c("aut", "cph"),
            comment = c(ORCID = "0000-0002-6981-0154")),
@@ -21,28 +21,29 @@ BugReports: https://github.com/rOpenSpain/climaemet/issues
 Depends: R (>= 3.6.0)
 Imports: cli (>= 3.0.0), dplyr (>= 1.0.0), ggplot2 (>= 3.3.2), httr2
         (>= 1.0.0), jsonlite (>= 1.7.0), rappdirs (>= 0.3.3), readr (>=
-        1.4.0), rlang (>= 0.4.6), tibble (>= 3.0.3), tidyr (>= 1.1.0)
+        1.4.0), rlang (>= 0.4.6), tibble (>= 3.0.3), tidyr (>= 1.1.0),
+        xml2
 Suggests: climatol (>= 3.1.2), gganimate (>= 1.0.5), jpeg (>= 0.1.8),
         knitr, lifecycle, lubridate, mapSpain, rmarkdown, scales, sf
-        (>= 0.9.0), testthat (>= 3.0.0)
+        (>= 0.9.0), terra, testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/Needs/website: cpp11, crosstalk, devtools, geofacet, geoR,
-        gifski, gstat, leaflet, reactable, scales, sf, terra,
-        tidyterra, tidyverse, usethis
+        gifski, gstat, leaflet, reactable, scales, tidyterra,
+        tidyverse, usethis
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Copyright: © AEMET. See file COPYRIGHTS
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 X-schema.org-applicationCategory: Meteorology
 X-schema.org-isPartOf: https://ropenspain.es/
 NeedsCompilation: no
-Packaged: 2024-06-23 20:47:44 UTC; diego
+Packaged: 2024-08-28 12:38:24 UTC; diego
 Author: Manuel Pizarro [aut, cph] (<https://orcid.org/0000-0002-6981-0154>),
   Diego Hernangómez [aut, cre] (<https://orcid.org/0000-0001-8457-4658>,
     rOpenSpain),
   Gema Fernández-Avilés [aut] (<https://orcid.org/0000-0001-5934-1916>)
 Maintainer: Diego Hernangómez <diego.hernangomezherrero@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-06-23 21:00:02 UTC
+Date/Publication: 2024-08-28 14:00:02 UTC
