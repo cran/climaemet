@@ -73,51 +73,58 @@ cat(paste("---\n\n", clean, "\n---"))
 
  AGENCIA ESTATAL DE METEOROLOGÍA
 PREDICCIÓN GENERAL PARA ESPAÑA 
-DÍA 28 DE AGOSTO DE 2024 A LAS 08:21 HORA OFICIAL
-PREDICCIÓN VÁLIDA PARA EL MIÉRCOLES 28
+DÍA 23 DE MARZO DE 2025 A LAS 09:12 HORA OFICIAL
+PREDICCIÓN VÁLIDA PARA EL DOMINGO 23
 
 A.- FENÓMENOS SIGNIFICATIVOS
-Temperaturas elevadas en zonas de la meseta Sur, depresiones del
-nordeste y valle del Guadalquivir. Tormentas localmente fuertes en
-la montaña turolense.
+Precipitaciones persistentes en zonas próximas al litoral
+cantábrico, sin descartar que sean localmente fuertes al final
+del día. Probables chubascos ocasionalmente fuertes y con
+tormenta en la zona del Estrecho, sin descartarlos en otros puntos
+del sureste peninsular y en litorales y prelitorales de Cataluña.
+Nevadas con acumulaciones abundantes en los sistemas montañosos
+del norte y centro peninsular y en las montañas del sureste,
+principalmente al final del día. Intervalos de viento fuerte y
+probables rachas muy fuertes en litorales del Cantábrico y del
+Mar de Alborán. En Canarias rachas muy fuertes en vertientes
+expuestas de las islas de mayor relieve.
 
 B.- PREDICCIÓN
-Un frente atlántico se aproximará al noroeste peninsular,
-dejando cielos nubosos en Galicia y Cantábrico occidental, sin
-descartar precipitaciones débiles, más probables e intensas en
-el norte de la comunidad gallega. También se prevé nubosidad
-baja matinal en zonas del área mediterránea y el Estrecho. En el
-resto de la Península y Baleares empezará poco nuboso,
-aumentando a nubes medias y altas por el oeste y el sur. Por la
-tarde se formarán nubes de evolución en el centro e interiores
-del tercio oriental, sin descartar chubascos o tormentas aislados,
-más probables e intensos en el sistema Ibérico y Pirineo
-oriental, esperándose localmente fuertes en la Ibérica de
-Teruel. En Canarias se esperan cielos nubosos desplazándose de
-oeste a este, predominantemente de nubes medias y altas, sin
-descartar chubascos aislados en las islas montañosas.
+Aunque ya en fase de disolución, la presencia de la borrasca
+Martinho cerca del golfo de Vizcaya seguirá dejando los cielos
+muy nubosos o cubiertos en la mitad norte peninsular con
+precipitaciones persistentes y sin descartar que sean fuertes al
+final del día en zonas próximas al litoral cantábrico. En el
+resto, intervalos nubosos con chubascos que probablemente serán
+ocasionalmente fuertes en la zona del Estrecho y mar de Alborán,
+sin descartar que se produzcan también en litorales y
+prelitorales de Cataluña y en puntos del sureste peninsular. La
+cota de nieve se  mantendrá en torno a 800/1000 m en meseta Norte
+y norte peninsular mientras que el sur y vertiente mediterránea
+se situará entre 1000/1400 m. Se esperan nevadas con
+acumulaciones abundantes en los sistemas montañosos del norte y
+centro peninsular y en montañas del sureste, sobre todo al final
+del día. Tampoco se descarta que haya chubascos en forma de nieve
+y/o nieve granulada en cotas más bajas de ambas mesetas. En
+Canarias, cielos nubosos con precipitaciones débiles en el norte
+de las islas e intervalos nubosos en el sur.
 
-Llegará calima por el tercio sur de la Península y Alborán, sin
-descartar que se extienda con menor intensidad por el resto de la
-mitad sur. Probables nieblas matinales en el extremo norte, zonas
-del Mediterráneo y el Estrecho.
+Las temperaturas seguirán descendiendo en la Península y
+Baleares aunque se esperan ligeros ascensos de las máximas en el
+oeste peninsular. En Canarias temperaturas sin cambios
+significativos. Las heladas ganan en extensión dándose en zonas
+de montaña y alrededores de los principales sistemas de la mitad
+norte y del sureste y de forma dispersa y débil en la meseta
+norte.
 
-Las temperaturas máximas descenderán en el Cantábrico y oeste
-de Andalucía y aumentarán en el oeste de Galicia, este de
-Andalucía y zonas del centro y nordeste. Se superarán los 36
-grados en depresiones de la vertiente atlántica sur y zonas del
-medio Ebro, incluso los 38 en puntos del Guadalquivir, Guadiana y
-Tajo. Las mínimas en ascenso en el nordeste y centro norte y en
-descenso en interiores del oeste.
-
-Soplará alisio moderado en Canarias con algunas rachas o
-intervalos fuertes en zonas expuestas. Componente este en el área
-mediterráneas y tercio oriental, con intervalos de fuerte en el
-Estrecho y litoral almeriense. Tenderá a componentes norte y este
-en litorales gallegos, con intervalos de fuerte en Rías Baixas.
-En el resto de zonas los vientos serán variables, flojos en
-general y más intensos en litorales, tendiendo a sudoeste en el
-cuadrante sudoeste.
+Soplarán vientos moderados, que serán de componente oeste en
+Baleares y en la Península, salvo en el extremo noroeste donde
+soplará del norte. Cierzo en el bajo Ebro. Se prevé alcanzar
+intervalos de fuerte y probables rachas muy fuertes en litorales
+del Cantábrico y del mar de Alborán. Intervalos de fuerte en los
+litorales atlánticos de Galicia. En Canarias continuará el norte
+moderado con probables intervalos de fuerte y rachas muy fuertes
+en vertientes expuestas de las islas de mayor relieve.
 
  
 ---
